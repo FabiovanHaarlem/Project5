@@ -2,7 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SpinningWheel : MonoBehaviour {
+namespace Game.Character.Pickup
+{
+    public class SpinningWheel : MonoBehaviour {
 
     
+    }
 }
+
+

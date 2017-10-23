@@ -1,9 +1,9 @@
 ﻿using UnityEngine;
 using System;
 
-namespace ObjectPool
+namespace Plugins.ObjectPool.Spawners
 {
-    public class ProcentageSpawner : Spawner
+    internal class ProcentageSpawner : Spawner
     {
 
         protected void Start()

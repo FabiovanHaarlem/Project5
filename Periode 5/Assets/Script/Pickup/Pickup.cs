@@ -1,27 +1,34 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Game.Character.player.Powerups;
+using Plugins.ObjectPool;
 
-[RequireComponent(typeof(Collider))]
-public class Pickup : ObjectPool.PoolObject
+namespace Game.Character.Pickup
 {
-
-    [SerializeField]
-    private ScriptableObject m_ScriptableObj;
-
-    private void Start()
+    [RequireComponent(typeof(Collider))]
+    public class Pickup : PoolObject
     {
-        GetComponent<Collider>().isTrigger = true;
-    }
 
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.gameObject.tag == "Player")
+        [SerializeField]
+        private ScriptableObject m_ScriptableObj;
+
+        private void Start()
         {
-            if (m_ScriptableObj.GetType() == typeof(ScriptablePowerUp))
-                other.SendMessage("PickUp", (ScriptablePowerUp)m_ScriptableObj, SendMessageOptions.RequireReceiver);
+            GetComponent<Collider>().isTrigger = true;
+        }
 
-            Deactivate();
+        private void OnTriggerEnter(Collider other)
+        {
+            if (other.gameObject.tag == "Player")
+            {
+                if (m_ScriptableObj.GetType() == typeof(ScriptablePowerUp))
+                    other.SendMessage("PickUp", (ScriptablePowerUp)m_ScriptableObj, SendMessageOptions.RequireReceiver);
+
+                Deactivate();
+            }
         }
     }
 }
+
+

@@ -2,7 +2,9 @@ notes Project:
 
 if fish is being catched play being catched animation
 
-Making score work
+Cought fish count on colored board
+
+hats must be placed on the player, NOT ON THE UI;
 
 
 Wheel effects:

@@ -1,10 +1,10 @@
 ﻿using UnityEngine;
 using System;
 
-namespace ObjectPool
+namespace Plugins.ObjectPool.Spawners
 {
 
-    public sealed class ProcentageSpawnerMultipeSpawnPoints : ProcentageSpawner
+    internal sealed class ProcentageSpawnerMultipeSpawnPoints : ProcentageSpawner
     {
 
         protected override void FixedUpdate()
