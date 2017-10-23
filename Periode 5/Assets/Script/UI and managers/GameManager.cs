@@ -4,7 +4,6 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using Plugins.ObjectPool;
 using Game.UI;
-using Game.Character.player;
 using Game.Character.Pickup;
 
 namespace Game
@@ -67,8 +66,8 @@ namespace Game
             M_Players = new List<GameObject>();
             m_Scores = new List<PlayerScore>();
 
-            foreach (Text i in m_ScoreBoards)
-                i.gameObject.transform.parent.gameObject.SetActive(false);
+            //foreach (Text i in m_ScoreBoards)
+            //    i.gameObject.transform.parent.gameObject.SetActive(false);
         }
 
         //protected void Start()
@@ -87,7 +86,7 @@ namespace Game
             m_Scores.Add(new PlayerScore(Player));
             PlayerScore score = m_Scores[m_Scores.Count -1];
             m_ScorePoints[m_Scores.Count - 1].AddComponent<ScorePoint>();
-            m_ScoreBoards[m_Scores.Count - 1].gameObject.transform.parent.gameObject.SetActive(true);
+            //m_ScoreBoards[m_Scores.Count - 1].gameObject.transform.parent.gameObject.SetActive(true);
             M_Players.Add(Player.gameObject);
 
             //spawning the UI element
@@ -100,23 +99,25 @@ namespace Game
             switch(M_Players.Count){
                 case 1:
                     playerstatstransform.localPosition = new Vector3(6, -2, 0);
-                    Player.ModifyControls(KeyCode.W, KeyCode.S, KeyCode.A, KeyCode.D, KeyCode.Q, KeyCode.E);
+                    Player.ModifyControls("Controller1AButton", "Controller1XButton", "Controller1LeftBumper", "Controller1RightBumper", "Controller1JoystickHorizontal", "Controller1JoystickVertical");
                     m_ScorePoints[0].GetComponent<ScorePoint>().m_PlayerID = 1;
                     break;
 
                 case 2:
                     playerstatstransform.localPosition = new Vector3(-6, -2, 0);
-                    Player.ModifyControls(KeyCode.I, KeyCode.K, KeyCode.J, KeyCode.L, KeyCode.U, KeyCode.O);
+                    Player.ModifyControls("Controller2AButton", "Controller2XButton", "Controller2LeftBumper", "Controller2RightBumper", "Controller2JoystickHorizontal", "Controller2JoystickVertical");
                     m_ScorePoints[1].GetComponent<ScorePoint>().m_PlayerID = 2;
                     break;
 
                 case 3:
                     playerstatstransform.localPosition = new Vector3(6, 2, 0);
+                    Player.ModifyControls("Controller3AButton", "Controller3XButton", "Controller3LeftBumper", "Controller3RightBumper", "Controller3JoystickHorizontal", "Controller3JoystickVertical");
                     m_ScorePoints[2].GetComponent<ScorePoint>().m_PlayerID = 3;
                     break;
 
                 case 4:
                     playerstatstransform.localPosition = new Vector3(-6, 2, 0);
+                    Player.ModifyControls("Controller4AButton", "Controller4XButton", "Controller4LeftBumper", "Controller4RightBumper", "Controller4JoystickHorizontal", "Controller4JoystickVertical");
                     m_ScorePoints[3].GetComponent<ScorePoint>().m_PlayerID = 4;
                     break;
             }
@@ -126,7 +127,7 @@ namespace Game
             stats.UpdateID((byte)M_Players.Count, score, 5, m_ScoreBoards[M_Players.Count - 1]);
 
             //update playerID in the character controller
-            Player.SetPlayerID((byte)M_Players.Count);
+            Player.SetPlayerID = (byte)M_Players.Count;
         }
 
         protected void Update()

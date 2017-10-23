@@ -1,24 +1,14 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 using System;
-using ObjectPool;
+using Plugins.ObjectPool;
+using Game.Character.Ai;
+using Game.Character.player.Powerups;
+using Game;
+using Game.Character.Pickup;
 
 public class CharacterControl : PoolObject
 {
-<<<<<<< HEAD
-<<<<<<< HEAD
-    public class CharacterControl : PoolObject
-    {
-        private Walking m_WalkingState;
-        private Fishing m_FishingState;
-        private CarryingFish m_CarryingFishState;
-        private ICharacterStates m_CurrentState;
-        [SerializeField]
-        private GameObject m_SelectedSprite;
-=======
-=======
->>>>>>> f260879072728bc89455d28b421450bc13595c3f
     [SerializeField]
     private GameObject m_SelectedSprite;
     [SerializeField]
@@ -30,60 +20,20 @@ public class CharacterControl : PoolObject
     private Rigidbody m_Rigidbody;
 
     private ICharacterStates m_CurrentState;
-<<<<<<< HEAD
->>>>>>> Fabio
-=======
->>>>>>> f260879072728bc89455d28b421450bc13595c3f
 
     [SerializeField]
     private float m_HorMoveSpeed;
     [SerializeField]
     private float m_VerMoveSpeed;
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-        [SerializeField]
-        private float m_HorMoveSpeed;
-        [SerializeField]
-        private float m_VerMoveSpeed;
-=======
-=======
->>>>>>> f260879072728bc89455d28b421450bc13595c3f
     private string[] m_Inputs;
 
     public Action<IFish> M_Catched { get; set; }
     public Action<PowerUp> M_AddPowerup { get; set; }
-<<<<<<< HEAD
->>>>>>> Fabio
-=======
->>>>>>> f260879072728bc89455d28b421450bc13595c3f
 
     private byte m_PlayerID;
     public byte SetPlayerID { set { m_PlayerID = value; } }
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-        private byte m_PlayerID;
-        public void SetPlayerID(byte input) { m_PlayerID = input; }
-
-        public void ModifyControls(KeyCode upKey, KeyCode downKey, KeyCode leftKey, KeyCode rightKey, KeyCode toFishingKey, KeyCode attackKey)
-        {
-            m_KeyCodes = new KeyCode[6];
-            m_KeyCodes[0] = upKey;
-            m_KeyCodes[1] = downKey;
-            m_KeyCodes[2] = leftKey;
-            m_KeyCodes[3] = rightKey;
-            m_KeyCodes[4] = toFishingKey;
-            m_KeyCodes[5] = attackKey;
-
-            m_WalkingState.UpdateControls(m_KeyCodes);
-            m_FishingState.UpdateControls(m_KeyCodes);
-            m_CarryingFishState.UpdateControls(m_KeyCodes);
-
-        }
-=======
-=======
->>>>>>> f260879072728bc89455d28b421450bc13595c3f
 
     public void ModifyControls(string toFishingButton, string attackButton, string switchFishLeftButton, string switchFishRightButton, string horizontalAxis, string verticalAxis)
     {
@@ -95,15 +45,6 @@ public class CharacterControl : PoolObject
         m_Inputs[4] = horizontalAxis;
         m_Inputs[5] = verticalAxis;
 
-        if (m_Inputs[0] == null)
-        {
-            m_Inputs[0] = "Controller1AButton";
-            m_Inputs[1] = "Controller1XButton";
-            m_Inputs[2] = "Controller1LeftBumper";
-            m_Inputs[3] = "Controller1RightBumper";
-            m_Inputs[4] = "Controller1JoystickHorizontal";
-            m_Inputs[5] = "Controller1JoystickVertical";
-        }
 
         m_WalkingState.UpdateControls(m_Inputs);
         m_FishingState.UpdateControls(m_Inputs);
@@ -117,13 +58,20 @@ public class CharacterControl : PoolObject
 
     private void Start()
     {
-        m_Inputs = new string[6];
-        m_Inputs[0] = "Controller1AButton";
-        m_Inputs[1] = "Controller1XButton";
-        m_Inputs[2] = "Controller1LeftBumper";
-        m_Inputs[3] = "Controller1RightBumper";
-        m_Inputs[4] = "Controller1JoystickHorizontal";
-        m_Inputs[5] = "Controller1JoystickVertical";
+        if (m_Inputs == null)
+        {
+            m_Inputs = new string[6];
+        }
+
+        if (m_Inputs[0] == null)
+        {
+            m_Inputs[0] = "Controller1AButton";
+            m_Inputs[1] = "Controller1XButton";
+            m_Inputs[2] = "Controller1LeftBumper";
+            m_Inputs[3] = "Controller1RightBumper";
+            m_Inputs[4] = "Controller1JoystickHorizontal";
+            m_Inputs[5] = "Controller1JoystickVertical";
+        }
 
         m_WalkingState = new Walking(this, ref m_HorMoveSpeed, ref m_VerMoveSpeed);
         m_FishingState = new Fishing(this, m_SelectedSprite);
@@ -148,7 +96,8 @@ public class CharacterControl : PoolObject
         m_Rigidbody = GetComponent<Rigidbody>();
 
         m_SelectedSprite = Pool.Singleton.Spawn(m_SelectedSprite).gameObject;
-        m_SelectedSprite = Pool.Singleton.Spawn(m_FishingLine.gameObject).gameObject;
+        GameObject fishingLine = Pool.Singleton.Spawn(m_FishingLine.gameObject).gameObject;
+        m_FishingLine = fishingLine.GetComponent<LineRenderer>();
 
         m_SelectedSprite.SetActive(false);
         m_FishingLine.gameObject.SetActive(false);
@@ -156,9 +105,6 @@ public class CharacterControl : PoolObject
         GameManager.Singelton.RegisterPlayer(this);
         base.Initialize(Info);
     }
-<<<<<<< HEAD
->>>>>>> Fabio
-=======
 
     private void SetMoveSpeed()
     {
@@ -166,7 +112,6 @@ public class CharacterControl : PoolObject
         {
             m_HorMoveSpeed = 2f;
         }
->>>>>>> f260879072728bc89455d28b421450bc13595c3f
 
         if (m_VerMoveSpeed == 0f)
         {
@@ -174,15 +119,6 @@ public class CharacterControl : PoolObject
         }
     }
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-        void Update ()
-        {
-            m_CurrentState.UpdateState();
-	    }
-=======
-=======
->>>>>>> f260879072728bc89455d28b421450bc13595c3f
     public void ShowCurrentSelectedfish(GameObject currentSelectedFish)
     {
         m_SelectedSprite.transform.position = new Vector3(currentSelectedFish.transform.position.x, currentSelectedFish.transform.position.y + 1f, currentSelectedFish.transform.position.z);
@@ -193,10 +129,6 @@ public class CharacterControl : PoolObject
     {
         m_CurrentState.UpdateState();
     }
-<<<<<<< HEAD
->>>>>>> Fabio
-=======
->>>>>>> f260879072728bc89455d28b421450bc13595c3f
 
     public void DropFish()
     {
@@ -229,18 +161,6 @@ public class CharacterControl : PoolObject
         m_SelectedSprite.SetActive(false);
     }
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-        public void SwitchToCarryingState(List<IFish> caughtFish)
-        {
-            m_CurrentState = m_CarryingFishState;
-            m_CarryingFishState.InitializeState();
-            m_CarryingFishState.GetCaughtFish(caughtFish);
-            m_SelectedSprite.SetActive(false);
-        }
-=======
-=======
->>>>>>> f260879072728bc89455d28b421450bc13595c3f
     public void HitByAttack()
     {
         if (m_CurrentState == m_WalkingState)
@@ -276,10 +196,6 @@ public class CharacterControl : PoolObject
     {
         m_CurrentState.OnTriggerStay(other);
     }
-<<<<<<< HEAD
->>>>>>> Fabio
-=======
->>>>>>> f260879072728bc89455d28b421450bc13595c3f
 
     public void OnTriggerEnter(Collider other)
     {
@@ -316,16 +232,6 @@ public class CharacterControl : PoolObject
         M_AddPowerup.Invoke(powerup);
     }
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-        private void AddRemovePowerup(PowerupStats stats)
-        {
-            m_HorMoveSpeed *= stats.m_AddSpeed;
-            m_VerMoveSpeed *= stats.m_AddSpeed;
-        }
-=======
-=======
->>>>>>> f260879072728bc89455d28b421450bc13595c3f
     public void ActivateFishingLine(GameObject selectedFish)
     {
         m_FishingLine.gameObject.SetActive(true);
@@ -348,9 +254,5 @@ public class CharacterControl : PoolObject
     {
         m_HorMoveSpeed *= stats.m_AddSpeed;
         m_VerMoveSpeed *= stats.m_AddSpeed;
-<<<<<<< HEAD
->>>>>>> Fabio
-=======
->>>>>>> f260879072728bc89455d28b421450bc13595c3f
     }
 }
