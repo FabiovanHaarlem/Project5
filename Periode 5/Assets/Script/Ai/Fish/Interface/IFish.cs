@@ -1,11 +1,18 @@
 ﻿using UnityEngine;
 
-public interface IFish
+namespace Game.Character.Ai
 {
-    string M_Name { get; set; }
+    public interface IFish
+    {
+        string M_Name { get; }
 
-    void Atteract(Vector3 destination);
-    void Catched();
-    void BeingCatched();
-    void Escaped();
+
+        GameObject GetGameObject { get; }
+        void Atteract(Vector3 destination);
+        void Catched();
+        void BeingCatched();
+        void Escaped();
+    }
 }
+
+

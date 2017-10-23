@@ -1,23 +1,23 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 
-namespace ObjectPool
+namespace Plugins.ObjectPool
 {
-    public delegate void PoolObjectCallback(List<PoolObject> Pool, PoolObject Script, Transform Parrent);
-    public struct PoolObjectInfo { internal List<PoolObject> Pool; internal Transform Parrent; internal PoolObjectCallback Callback; }
+    internal delegate void PoolObjectCallback(List<PoolObject> Pool, PoolObject Script, Transform Parrent);
+    internal struct PoolObjectInfo { internal List<PoolObject> Pool; internal Transform Parrent; internal PoolObjectCallback Callback; }
 
     public class PoolObject :  MonoBehaviour
     {
 
         private PoolObjectInfo m_Info;
 
-        public virtual void Initialize(PoolObjectInfo Info)
+        internal virtual void Initialize(PoolObjectInfo Info)
         {
             m_Info = Info;
             gameObject.SetActive(false);
         }
 
-        public virtual void Activate()
+        protected internal virtual void Activate()
         {
             transform.SetParent(null);
         }

@@ -1,73 +1,78 @@
 ﻿using UnityEngine;
 using System;
 
-public delegate void RemovePowerupEffectDelegate(PowerupStats stats);
-internal delegate void RemovePowerupPoolDelegate(PowerUp powerUp);
-
-[Serializable]
-public struct PowerupStats
+namespace Game.Character.player.Powerups
 {
-    //time active
-    [SerializeField]
-    internal float m_TimeActive;
+    internal delegate void RemovePowerupEffectDelegate(PowerupStats stats);
+    internal delegate void RemovePowerupPoolDelegate(PowerUp powerUp);
 
-    //var for other objects to use
-    [SerializeField]
-    internal float m_AddSpeed;
-    [SerializeField]
-    internal float m_AddCatchSpeed;
-}
-
-[CreateAssetMenu(fileName = "NewHat", menuName = "Hat", order = 1)]
-public class ScriptablePowerUp : ScriptableObject
-{
-    //info of object is stored here
-    [SerializeField][Tooltip("Power Stats go in here")]
-    public PowerupStats stats;
-
-    //image used for UI will go here
-    [SerializeField][Tooltip("image used for UI will go here")]
-    public Sprite m_Image;
-}
-
-public class PowerUp
-{
-    //used for update
-    private PowerupStats M_States;
-
-    internal RemovePowerupEffectDelegate m_RemoveCallBack;
-    internal RemovePowerupPoolDelegate m_RemovePoolCallback;
-
-    private Sprite m_Image;
-    public Sprite GetSprite() { return m_Image; }
-
-    public PowerUp(PowerupStats stats, RemovePowerupEffectDelegate callback, Sprite sprite)
+    [Serializable]
+    internal struct PowerupStats
     {
-        M_States = stats;
-        m_RemoveCallBack = callback;
-        m_Image = sprite;
+        //time active
+        [SerializeField]
+        internal float m_TimeActive;
+
+        //var for other objects to use
+        [SerializeField]
+        internal float m_AddSpeed;
+        [SerializeField]
+        internal float m_AddCatchSpeed;
     }
 
-    public void Update()
+    [CreateAssetMenu(fileName = "NewHat", menuName = "Hat", order = 1)]
+    class ScriptablePowerUp : ScriptableObject
     {
-        M_States.m_TimeActive -= Time.deltaTime;
+        //info of object is stored here
+        [SerializeField][Tooltip("Power Stats go in here")]
+        public PowerupStats stats;
 
-        if (M_States.m_TimeActive <= 0)
+        //image used for UI will go here
+        [SerializeField][Tooltip("image used for UI will go here")]
+        public Sprite m_Image;
+    }
+
+    public class PowerUp
+    {
+        //used for update
+        private PowerupStats M_States;
+
+        internal RemovePowerupEffectDelegate m_RemoveCallBack;
+        internal RemovePowerupPoolDelegate m_RemovePoolCallback;
+
+        private Sprite M_Image { get; }
+        public Sprite GetSprite() { return M_Image; }
+
+        internal PowerUp(PowerupStats stats, RemovePowerupEffectDelegate callback, Sprite sprite)
         {
-            m_RemoveCallBack.Invoke(GetNegativeStats(M_States));
-            m_RemovePoolCallback.Invoke(this);
-            Debug.Log("PowerUp is depeted");
+            M_States = stats;
+            m_RemoveCallBack = callback;
+            M_Image = sprite;
+        }
+
+        public void Update()
+        {
+            M_States.m_TimeActive -= Time.deltaTime;
+
+            if (M_States.m_TimeActive <= 0)
+            {
+                m_RemoveCallBack.Invoke(GetNegativeStats(M_States));
+                m_RemovePoolCallback.Invoke(this);
+                Debug.Log("PowerUp is depeted");
+            }
+        }
+
+        private PowerupStats GetNegativeStats(PowerupStats input)
+        {
+            PowerupStats output = new PowerupStats()
+            {
+                m_AddCatchSpeed = -input.m_AddCatchSpeed,
+                m_AddSpeed = -input.m_AddSpeed
+            };
+
+            return output;
         }
     }
-
-    private PowerupStats GetNegativeStats(PowerupStats input)
-    {
-        PowerupStats output = new PowerupStats()
-        {
-            m_AddCatchSpeed = -input.m_AddCatchSpeed,
-            m_AddSpeed = -input.m_AddSpeed
-        };
-
-        return output;
-    }
 }
+
+

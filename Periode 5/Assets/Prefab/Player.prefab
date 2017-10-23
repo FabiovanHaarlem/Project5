@@ -23,7 +23,7 @@ GameObject:
   - component: {fileID: 65488183950836924}
   - component: {fileID: 114811862973337688}
   - component: {fileID: 54343399614661940}
-  - component: {fileID: 195574530094606258}
+  - component: {fileID: 208164758918578834}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -82,29 +82,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 636b01eb524d77d44b53fef18a029afc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_SelectedSprite: {fileID: 1020127421181930, guid: 9025bc5b81e37a341a28549516dfc56a,
+    type: 2}
+  m_FishingLine: {fileID: 120376859983665312, guid: 6228a1c883405d54c91d7965882f91d8,
+    type: 2}
   m_HorMoveSpeed: 5
   m_VerMoveSpeed: 5
---- !u!195 &195574530094606258
-NavMeshAgent:
+--- !u!208 &208164758918578834
+NavMeshObstacle:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1797019875920410}
-  m_Enabled: 1
-  m_AgentTypeID: 0
-  m_Radius: 0.100000024
-  m_Speed: 3.5
-  m_Acceleration: 8
-  avoidancePriority: 50
-  m_AngularSpeed: 120
-  m_StoppingDistance: 0
-  m_AutoTraverseOffMeshLink: 1
-  m_AutoBraking: 1
-  m_AutoRepath: 1
-  m_Height: 0.16000004
-  m_BaseOffset: 0.08000002
-  m_WalkableMask: 4294967295
-  m_ObstacleAvoidanceType: 4
+  m_Enabled: 0
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.080000006, y: 0.080000006, z: 0.1}
+  m_MoveThreshold: 0.1
+  m_Carve: 0
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 0, z: 0}
+  m_TimeToStationary: 0.5
 --- !u!212 &212345866627879386
 SpriteRenderer:
   m_ObjectHideFlags: 1

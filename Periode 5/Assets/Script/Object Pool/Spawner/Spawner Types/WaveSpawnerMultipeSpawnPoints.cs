@@ -1,8 +1,8 @@
 ﻿using UnityEngine;
 
-namespace ObjectPool
+namespace Plugins.ObjectPool.Spawners
 {
-    public sealed class WaveSpawnerMultipeSpawnPoints : WaveSpawner, IWaveSpawner
+    internal sealed class WaveSpawnerMultipeSpawnPoints : WaveSpawner, IWaveSpawner
     {
 
         protected override void FixedUpdate()
@@ -13,23 +13,20 @@ namespace ObjectPool
 
             for (int i = 0; i < M_Spawners.Count; i++)
             {
-                if (M_Spawners[i].m_Obj != null)
+                if (M_Spawners[i].m_Obj != null && Random.Range(0, 100) < M_Spawners[i].m_Obj.m_SpawnProcentage)
                 {
-                    if (Random.Range(0, 100) < M_Spawners[i].m_Obj.m_SpawnProcentage)
+                    int SpawnPointIndex = Random.Range(0, M_SpawnPosition.Length);
+                    if (M_SpawnPosition.Length == 0)
+                        Debug.LogWarning("No Spawnpoints for Spawner found, Spawn aborted", transform);
+                    else
                     {
-                        int SpawnPointIndex = Random.Range(0, M_SpawnPosition.Length);
-                        if (M_SpawnPosition.Length == 0)
-                            Debug.LogWarning("No Spawnpoints for Spawner found, Spawn aborted", transform);
-                        else
+                        SpawnItem spawnItem = new SpawnItem()
                         {
-                            SpawnItem spawnItem = new SpawnItem()
-                            {
-                                M_prefab = M_Spawners[i].m_Obj.m_Prefab,
-                                m_Pool = M_Spawners[i].m_Pool,
-                                M_SpawnPosition = M_SpawnPosition[SpawnPointIndex]
-                            };
-                            M_Wave.Add(spawnItem);
-                        }
+                            M_prefab = M_Spawners[i].m_Obj.m_Prefab,
+                            m_Pool = M_Spawners[i].m_Pool,
+                            M_SpawnPosition = M_SpawnPosition[SpawnPointIndex]
+                        };
+                        M_Wave.Add(spawnItem);
                     }
                 }
             }

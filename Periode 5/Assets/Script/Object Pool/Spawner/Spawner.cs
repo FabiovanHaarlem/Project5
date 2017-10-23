@@ -2,9 +2,9 @@
 using UnityEngine;
 using System;
 
-namespace ObjectPool
+namespace Plugins.ObjectPool.Spawners
 {
-    public class Spawner : MonoBehaviour, ISpawner {
+    internal class Spawner : MonoBehaviour, ISpawner {
 
         public List<SpawnerInfo> M_Spawners { get; set; }
 
@@ -112,7 +112,7 @@ namespace ObjectPool
     {
         public SpawnObj m_Obj;
         internal List<PoolObject> m_Pool;
-        internal Transform m_SpawnPoint;
+        public Transform m_SpawnPoint;
     }
 
     /// <summary>

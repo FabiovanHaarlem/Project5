@@ -1,67 +1,45 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Game.Character.player.Powerups;
 
 public class Walking : ICharacterStates
 {
     private CharacterControl m_CharacterController;
 
-    private KeyCode[] m_KeyCodes;
-
+    private string[] m_Inputs;
     private float m_HorMoveSpeed;
     private float m_VerMoveSpeed;
     private float m_AttackCooldown;
 
-    public Walking(CharacterControl characterController, ref float horMoveSpeed, ref float verMoveSpeed, KeyCode[] keyCodes)
+    public Walking(CharacterControl characterController, ref float horMoveSpeed, ref float verMoveSpeed)
     {
-        m_KeyCodes = new KeyCode[6];
+        m_Inputs = new string[6];
         m_CharacterController = characterController;
         m_HorMoveSpeed = horMoveSpeed;
         m_VerMoveSpeed = verMoveSpeed;
-        m_AttackCooldown = 0;
-        m_KeyCodes = keyCodes;
+
+    }
+
+    public void UpdateControls(string[] inputs)
+    {
+        m_Inputs = inputs;
     }
 
     public void InitializeState()
     {
-
+        m_AttackCooldown = 0;
     }
 
     public void UpdateState()
     {
-        Debug.Log("Walking");
-        if (Input.GetKeyDown(m_KeyCodes[4]))
+        Debug.Log("Walking State");
+        if (Input.GetButtonDown(m_Inputs[0]))
         {
             ToFishing();
         }
 
-        Movement();
-    }
-
-    private void Movement()
-    {
-        Vector3 currentPosition = m_CharacterController.gameObject.transform.position;
-
-        if (Input.GetKey(m_KeyCodes[0]))
-        {
-          m_CharacterController.gameObject.transform.position = new Vector3(m_CharacterController.gameObject.transform.position.x,
-            m_CharacterController.gameObject.transform.position.y, m_CharacterController.gameObject.transform.position.z + m_VerMoveSpeed * Time.deltaTime);
-        }
-        if (Input.GetKey(m_KeyCodes[1]))
-        {
-            m_CharacterController.gameObject.transform.position = new Vector3(m_CharacterController.gameObject.transform.position.x,
-                m_CharacterController.gameObject.transform.position.y, m_CharacterController.gameObject.transform.position.z - m_VerMoveSpeed * Time.deltaTime);
-        }
-        if (Input.GetKey(m_KeyCodes[2]))
-        {
-            m_CharacterController.gameObject.transform.position = new Vector3(m_CharacterController.gameObject.transform.position.x - m_HorMoveSpeed * Time.deltaTime,
-                m_CharacterController.gameObject.transform.position.y, m_CharacterController.gameObject.transform.position.z);
-        }
-        if (Input.GetKey(m_KeyCodes[3]))
-        {
-            m_CharacterController.gameObject.transform.position = new Vector3(m_CharacterController.gameObject.transform.position.x + m_HorMoveSpeed * Time.deltaTime,
-                m_CharacterController.gameObject.transform.position.y, m_CharacterController.gameObject.transform.position.z);
-        }
+        m_CharacterController.gameObject.transform.position += new Vector3(-Input.GetAxis(m_Inputs[4]), 0, Input.GetAxis(m_Inputs[5])) * Time.deltaTime;
     }
 
     public void ToFishing()
@@ -71,12 +49,26 @@ public class Walking : ICharacterStates
 
     public void OnTriggerStay(Collider other)
     {
-        if (Input.GetKey(m_KeyCodes[5]) && m_AttackCooldown >= 2)
+        if (Input.GetButtonDown(m_Inputs[1]) && m_AttackCooldown >= 2)
         {
-            if (other.CompareTag("Player"))
+        //    Vector3 explosionPos = new Vector3 = m_CharacterController.transform.position;
+        //    Collider[] hitObjects = Physics.OverlapSphere(explosionPos, 2f);
+
+        //    foreach (Collider hit in hitObjects)
+        //    {
+        //        if (other.CompareTag("Player"))
+        //        {
+        //            Rigidbody hitRigidbody = hit.gameObject.GetComponent<Rigidbody>();
+
+        //            hitRigidbody.AddExplosionForce(2f, explosionPos, 1f);
+        //        }
+        //    }
+        //}
+
+        if (other.CompareTag("Player"))
             {
-                /// fabio moet slaan en stoppen met vissen vangen
-                other.gameObject.GetComponent<CharacterControl>().DropFish();
+                other.gameObject.SendMessage("HitByAttack");
+                
             }
         }
     }

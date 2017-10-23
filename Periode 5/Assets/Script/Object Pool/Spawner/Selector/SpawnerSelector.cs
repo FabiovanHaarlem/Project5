@@ -2,7 +2,7 @@
 using UnityEngine;
 
 
-namespace ObjectPool
+namespace Plugins.ObjectPool.Spawners
 {
     public enum SpawnerType
     {
@@ -82,13 +82,11 @@ namespace ObjectPool
         {
             Transform[] positions = M_Spawnlocation.ToArray();
 
-            if (m_Spawner != null)
+            if (m_Spawner != null
+                && m_Spawner.M_SpawnPosition != positions)
             {
-                if (m_Spawner.M_SpawnPosition != positions)
-                {
-                    m_Spawner.M_SpawnPosition = positions;
-                    m_Spawner.Initialize();
-                }
+                m_Spawner.M_SpawnPosition = positions;
+                m_Spawner.Initialize();
             }
         }
     }

@@ -2,30 +2,38 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+using Game.Character.Ai;
+using Game.Character.player.Powerups;
 
 public class Fishing : ICharacterStates
 {
     private IFish m_CurrentSelectedFish;
-
-    private KeyCode[] m_KeyCodes;
-
     private List<IFish> m_FishInArea;
     private List<IFish> m_CaughtFish;
-
-    private CharacterControl m_CharacterControl;
-
-    private int m_SelectedFishIndex;
-    private int m_CatchMeter;
-
     public Action<IFish> m_Catched;
 
-    public Fishing(CharacterControl characterController, KeyCode[] keyCodes)
+    private GameObject m_SelectedFishSprite;
+    private CharacterControl m_CharacterControl;
+
+    private string[] m_Inputs;
+    private int m_SelectedFishIndex;
+    private float m_CatchMeter;
+    private bool m_Catching;
+
+
+    public Fishing(CharacterControl characterController, GameObject selectedSprite)
     {
-        m_KeyCodes = new KeyCode[6];
+        m_Inputs = new string[6];
         m_CharacterControl = characterController;
         m_FishInArea = new List<IFish>();
         m_CaughtFish = new List<IFish>();
-        m_KeyCodes = keyCodes;
+        m_SelectedFishSprite = selectedSprite;
+        m_Catching = false;
+    }
+
+    public void UpdateControls(string[] inputs)
+    {
+        m_Inputs = inputs;
     }
 
     public void InitializeState()
@@ -38,20 +46,23 @@ public class Fishing : ICharacterStates
         m_CatchMeter = 0;
     }
 
+
     public void UpdateState()
     {
-        Debug.Log("Fishing");
-
+        Debug.Log("Fishing State");
         SwitchSelectedFish();
+
+        m_CharacterControl.ShowCurrentSelectedfish(m_CurrentSelectedFish.GetGameObject);
 
         if (m_CurrentSelectedFish != null)
         {
-            if (Input.GetKeyDown(m_KeyCodes[0]))
+            if (Input.GetButtonDown(m_Inputs[1]) && (m_Catching))
             {
                 Debug.Log("Catching Fish");
 
-                m_CurrentSelectedFish.BeingCatched();
+                m_CharacterControl.UpdateFishingLine(m_CurrentSelectedFish.GetGameObject);
                 m_CatchMeter += 20;
+
 
 
                 if (m_CatchMeter >= 100)
@@ -60,10 +71,30 @@ public class Fishing : ICharacterStates
                     CatchFish();
                 }
             }
+            else if (Input.GetButtonDown(m_Inputs[1]) && (!m_Catching))
+            {
+                m_CharacterControl.ActivateFishingLine(m_CurrentSelectedFish.GetGameObject);
+                m_CurrentSelectedFish.BeingCatched();
+                m_Catching = true;
+            }
+
+            if (Input.GetButtonDown(m_Inputs[2]) || Input.GetButtonDown(m_Inputs[3]))
+            {
+                m_CharacterControl.DeactivateFishingLine();
+
+                if (m_Catching)
+                {
+                    m_CurrentSelectedFish.Escaped();
+                    m_CatchMeter = 0;
+                    m_CharacterControl.DeactivateFishingLine();
+                }
+            }
         }
 
-        if (Input.GetKeyDown(m_KeyCodes[4]))
+
+        if (Input.GetButtonDown(m_Inputs[0]))
         {
+            m_Catching = false;
             if (m_CaughtFish.Count >= 1)
             {
                 ToCarrying();
@@ -71,17 +102,22 @@ public class Fishing : ICharacterStates
             else
             {
                 ToWalking();
-            }      
+            }
         }
+    }
+
+    public List<IFish> GetCaughtFish()
+    {
+        return m_CaughtFish;
     }
 
     private void SwitchSelectedFish()
     {
-        if (Input.GetKey(m_KeyCodes[2]))
+        if (Input.GetButtonDown(m_Inputs[2]))
         {
             if (m_SelectedFishIndex == 0)
             {
-                m_SelectedFishIndex = m_FishInArea.Count;
+                m_SelectedFishIndex = m_FishInArea.Count - 1;
             }
             else if (m_SelectedFishIndex >= 1)
             {
@@ -91,7 +127,7 @@ public class Fishing : ICharacterStates
             m_CatchMeter = 0;
         }
 
-        if (Input.GetKey(m_KeyCodes[3]))
+        if (Input.GetButtonDown(m_Inputs[3]))
         {
             if (m_SelectedFishIndex == m_FishInArea.Count)
             {
@@ -104,11 +140,13 @@ public class Fishing : ICharacterStates
 
             m_CatchMeter = 0;
         }
+
+        m_CurrentSelectedFish = m_FishInArea[m_SelectedFishIndex];
     }
 
     private void CatchFish()
     {
-        if(m_FishInArea.Count > 0)
+        if (m_FishInArea.Count > 0)
         {
             m_CaughtFish.Add(m_FishInArea[m_SelectedFishIndex]);
             m_CaughtFish[m_CaughtFish.Count - 1].BeingCatched();
@@ -116,8 +154,12 @@ public class Fishing : ICharacterStates
             m_FishInArea.RemoveAt(m_SelectedFishIndex);
             m_SelectedFishIndex = 0;
 
+            m_CurrentSelectedFish.Catched();
+            //m_CaughtFish[m_CaughtFish.Count - 1].Catched();
 
-            m_CaughtFish[m_CaughtFish.Count - 1].Catched();
+            m_CharacterControl.DeactivateFishingLine();
+            m_Catching = false;
+            m_CatchMeter = 0;
         }
     }
 
@@ -160,15 +202,26 @@ public class Fishing : ICharacterStates
     private void GetAllFishInArea()
     {
         m_FishInArea.Clear();
-
-        Collider[] hitColliders = Physics.OverlapSphere(m_CharacterControl.gameObject.transform.position, 5000f);
-
-        foreach (Collider col in hitColliders)
+        if (m_CurrentSelectedFish != null)
         {
-            if (col.gameObject.layer == 8)
+            m_FishInArea.Add(m_CurrentSelectedFish);
+        }
+
+        Collider[] hitColliders = Physics.OverlapSphere(m_CharacterControl.gameObject.transform.position, 3.5f);
+
+        if (hitColliders.Length <= 0)
+        {
+            ToWalking();
+        }
+        else
+        {
+            foreach (Collider col in hitColliders)
             {
-                m_FishInArea.Add(col.gameObject.GetComponent<IFish>());
-            }    
+                if (col.gameObject.layer == 8)
+                {
+                    m_FishInArea.Add(col.gameObject.GetComponent<IFish>());
+                }
+            }
         }
     }
 
@@ -176,5 +229,4 @@ public class Fishing : ICharacterStates
     {
         m_CharacterControl.M_AddPowerup.Invoke(Power);
     }
-
 }
