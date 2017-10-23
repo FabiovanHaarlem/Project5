@@ -1,10 +1,10 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Game.Character.player.Powerups;
 
-namespace Game.Character.player
+public class Walking : ICharacterStates
 {
+<<<<<<< HEAD
 <<<<<<< HEAD
     public class Walking : ICharacterStates
     {
@@ -18,6 +18,8 @@ namespace Game.Character.player
 
         public Walking(CharacterControl characterController, ref float horMoveSpeed, ref float verMoveSpeed)
 =======
+=======
+>>>>>>> f260879072728bc89455d28b421450bc13595c3f
     private CharacterControl m_CharacterController;
 
     private string[] m_Inputs;
@@ -48,15 +50,15 @@ namespace Game.Character.player
     {
         Debug.Log("Walking State");
         if (Input.GetButtonDown(m_Inputs[0]))
+<<<<<<< HEAD
 >>>>>>> Fabio
+=======
+>>>>>>> f260879072728bc89455d28b421450bc13595c3f
         {
-            m_KeyCodes = new KeyCode[6];
-            M_CharacterController = characterController;
-            M_HorMoveSpeed = horMoveSpeed;
-            M_VerMoveSpeed = verMoveSpeed;
-            M_AttackCooldown = 0;
+            ToFishing();
         }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
         public void UpdateControls(KeyCode[] keyCodes)
         {
@@ -108,12 +110,17 @@ namespace Game.Character.player
         m_CharacterController.gameObject.transform.position += new Vector3(Input.GetAxis(m_Inputs[4]), 0, -Input.GetAxis(m_Inputs[5])) * Time.deltaTime;
     }
 >>>>>>> Fabio
+=======
+        m_CharacterController.gameObject.transform.position += new Vector3(Input.GetAxis(m_Inputs[4]), 0, -Input.GetAxis(m_Inputs[5])) * Time.deltaTime;
+    }
+>>>>>>> f260879072728bc89455d28b421450bc13595c3f
 
-        public void ToFishing()
-        {
-            M_CharacterController.SwitchToFishingState();
-        }
+    public void ToFishing()
+    {
+        m_CharacterController.SwitchToFishingState();
+    }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
         public void OnTriggerStay(Collider collider)
         {
@@ -125,6 +132,8 @@ namespace Game.Character.player
                 /// fabio moet slaan en stoppen met vissen vangen
                 collider.gameObject.GetComponent<CharacterControl>().DropFish();
 =======
+=======
+>>>>>>> f260879072728bc89455d28b421450bc13595c3f
     public void OnTriggerStay(Collider other)
     {
         if (Input.GetButtonDown(m_Inputs[1]) && m_AttackCooldown >= 2)
@@ -147,15 +156,16 @@ namespace Game.Character.player
             {
                 other.gameObject.SendMessage("HitByAttack");
                 
+<<<<<<< HEAD
 >>>>>>> Fabio
+=======
+>>>>>>> f260879072728bc89455d28b421450bc13595c3f
             }
         }
+    }
 
-        public void AddPowerUp(PowerUp Power)
-        {
-            M_CharacterController.M_AddPowerup.Invoke(Power);
-        }
+    public void AddPowerUp(PowerUp Power)
+    {
+        m_CharacterController.M_AddPowerup.Invoke(Power);
     }
 }
-
-

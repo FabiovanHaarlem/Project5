@@ -1,13 +1,12 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using System;
-using Game.Character.Ai;
-using Game.Character.player.Powerups;
-using Game.Character.Pickup;
-using Plugins.ObjectPool;
+using ObjectPool;
 
-namespace Game.Character.player
+public class CharacterControl : PoolObject
 {
+<<<<<<< HEAD
 <<<<<<< HEAD
     public class CharacterControl : PoolObject
     {
@@ -18,6 +17,8 @@ namespace Game.Character.player
         [SerializeField]
         private GameObject m_SelectedSprite;
 =======
+=======
+>>>>>>> f260879072728bc89455d28b421450bc13595c3f
     [SerializeField]
     private GameObject m_SelectedSprite;
     [SerializeField]
@@ -29,25 +30,38 @@ namespace Game.Character.player
     private Rigidbody m_Rigidbody;
 
     private ICharacterStates m_CurrentState;
+<<<<<<< HEAD
 >>>>>>> Fabio
+=======
+>>>>>>> f260879072728bc89455d28b421450bc13595c3f
 
-        private KeyCode[] m_KeyCodes;
+    [SerializeField]
+    private float m_HorMoveSpeed;
+    [SerializeField]
+    private float m_VerMoveSpeed;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
         [SerializeField]
         private float m_HorMoveSpeed;
         [SerializeField]
         private float m_VerMoveSpeed;
 =======
+=======
+>>>>>>> f260879072728bc89455d28b421450bc13595c3f
     private string[] m_Inputs;
 
     public Action<IFish> M_Catched { get; set; }
     public Action<PowerUp> M_AddPowerup { get; set; }
+<<<<<<< HEAD
 >>>>>>> Fabio
+=======
+>>>>>>> f260879072728bc89455d28b421450bc13595c3f
 
-        public Action<IFish> M_Catched;
-        public Action<PowerUp> M_AddPowerup;
+    private byte m_PlayerID;
+    public byte SetPlayerID { set { m_PlayerID = value; } }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
         private byte m_PlayerID;
         public void SetPlayerID(byte input) { m_PlayerID = input; }
@@ -68,6 +82,8 @@ namespace Game.Character.player
 
         }
 =======
+=======
+>>>>>>> f260879072728bc89455d28b421450bc13595c3f
 
     public void ModifyControls(string toFishingButton, string attackButton, string switchFishLeftButton, string switchFishRightButton, string horizontalAxis, string verticalAxis)
     {
@@ -140,41 +156,33 @@ namespace Game.Character.player
         GameManager.Singelton.RegisterPlayer(this);
         base.Initialize(Info);
     }
+<<<<<<< HEAD
 >>>>>>> Fabio
+=======
 
-        internal override void Initialize(PoolObjectInfo Info)
+    private void SetMoveSpeed()
+    {
+        if (m_HorMoveSpeed == 0f)
         {
-            SetMoveSpeed();
-            m_WalkingState = new Walking(this, ref m_HorMoveSpeed, ref m_VerMoveSpeed);
-            m_FishingState = new Fishing(this, ref m_SelectedSprite);
-            m_CarryingFishState = new CarryingFish(this, ref m_HorMoveSpeed, ref m_VerMoveSpeed);
-            m_CurrentState = m_WalkingState;
-            m_SelectedSprite = Instantiate<GameObject>(m_SelectedSprite);
-            m_SelectedSprite.SetActive(false);
-        
-            GameManager.Singelton.RegisterPlayer(this);
-            base.Initialize(Info);
+            m_HorMoveSpeed = 2f;
         }
+>>>>>>> f260879072728bc89455d28b421450bc13595c3f
 
-        private void SetMoveSpeed()
+        if (m_VerMoveSpeed == 0f)
         {
-            if (m_HorMoveSpeed == 0f)
-            {
-                m_HorMoveSpeed = 2f;
-            }
-
-            if (m_VerMoveSpeed == 0f)
-            {
-                m_VerMoveSpeed = 1f;
-            }
+            m_VerMoveSpeed = 1f;
         }
+    }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
         void Update ()
         {
             m_CurrentState.UpdateState();
 	    }
 =======
+=======
+>>>>>>> f260879072728bc89455d28b421450bc13595c3f
     public void ShowCurrentSelectedfish(GameObject currentSelectedFish)
     {
         m_SelectedSprite.transform.position = new Vector3(currentSelectedFish.transform.position.x, currentSelectedFish.transform.position.y + 1f, currentSelectedFish.transform.position.z);
@@ -185,31 +193,43 @@ namespace Game.Character.player
     {
         m_CurrentState.UpdateState();
     }
+<<<<<<< HEAD
 >>>>>>> Fabio
+=======
+>>>>>>> f260879072728bc89455d28b421450bc13595c3f
 
-        public void DropFish()
+    public void DropFish()
+    {
+        if (m_CurrentState == m_CarryingFishState)
         {
-            if (m_CurrentState == m_CarryingFishState)
-            {
-                m_CarryingFishState.DropFish();
-            }
+            m_CarryingFishState.DropFish();
         }
+    }
 
-        public void SwitchToWalkingState()
-        {
-            m_CurrentState = m_WalkingState;
-            m_WalkingState.InitializeState();
-            m_SelectedSprite.SetActive(false);
-        }
+    public void SwitchToWalkingState()
+    {
+        m_CurrentState = m_WalkingState;
+        m_WalkingState.InitializeState();
+        m_SelectedSprite.SetActive(false);
+    }
 
-        public void SwitchToFishingState()
-        {
-            m_CurrentState = m_FishingState;
-            m_FishingState.InitializeState();
-            m_FishingState.SetCurrentSelecetedFish();
-            m_SelectedSprite.SetActive(true);
-        }
+    public void SwitchToFishingState()
+    {
+        m_CurrentState = m_FishingState;
+        m_FishingState.InitializeState();
+        m_FishingState.SetCurrentSelecetedFish();
+        m_SelectedSprite.SetActive(true);
+    }
 
+    public void SwitchToCarryingState(List<IFish> caughtFish)
+    {
+        m_CurrentState = m_CarryingFishState;
+        m_CarryingFishState.InitializeState();
+        m_CarryingFishState.GetCaughtFish(caughtFish);
+        m_SelectedSprite.SetActive(false);
+    }
+
+<<<<<<< HEAD
 <<<<<<< HEAD
         public void SwitchToCarryingState(List<IFish> caughtFish)
         {
@@ -219,6 +239,8 @@ namespace Game.Character.player
             m_SelectedSprite.SetActive(false);
         }
 =======
+=======
+>>>>>>> f260879072728bc89455d28b421450bc13595c3f
     public void HitByAttack()
     {
         if (m_CurrentState == m_WalkingState)
@@ -254,43 +276,47 @@ namespace Game.Character.player
     {
         m_CurrentState.OnTriggerStay(other);
     }
+<<<<<<< HEAD
 >>>>>>> Fabio
+=======
+>>>>>>> f260879072728bc89455d28b421450bc13595c3f
 
-        public void OnTriggerStay(Collider other)
+    public void OnTriggerEnter(Collider other)
+    {
+        if (m_CurrentState == m_FishingState)
         {
-            m_CurrentState.OnTriggerStay(other);
+            m_FishingState.OnTriggerEnter(other);
         }
 
-        public void OnTriggerEnter(Collider other)
+        if (other.CompareTag("Scorepoint"))
         {
-            if (m_CurrentState == m_FishingState)
+            if(other.gameObject.GetComponent<ScorePoint>().m_PlayerID == m_PlayerID)
             {
-                m_FishingState.OnTriggerEnter(other);
-            }
-
-            if (other.CompareTag("Scorepoint")
-                && other.gameObject.GetComponent<ScorePoint>().m_PlayerID == m_PlayerID
-                && m_CurrentState == m_CarryingFishState)
-            {
+                if (m_CurrentState == m_CarryingFishState)
+                {
                     m_CarryingFishState.DropFishInScorepoint();
+                }
             }
-        }
 
-        public void OnTriggerExit(Collider other)
+        }
+    }
+
+    public void OnTriggerExit(Collider other)
+    {
+        if (m_CurrentState == m_FishingState)
         {
-            if (m_CurrentState == m_FishingState)
-            {
-                m_FishingState.OnTriggerExit(other);
-            }
+            m_FishingState.OnTriggerExit(other);
         }
+    }
 
-        private void PickUp(ScriptablePowerUp power)
-        {
-            PowerUp powerup = new PowerUp(power.stats, new RemovePowerupEffectDelegate(AddRemovePowerup), power.m_Image);
+    private void PickUp(ScriptablePowerUp power)
+    {
+        PowerUp powerup = new PowerUp(power.stats, new RemovePowerupEffectDelegate(AddRemovePowerup), power.m_Image);
 
-            M_AddPowerup.Invoke(powerup);
-        }
+        M_AddPowerup.Invoke(powerup);
+    }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
         private void AddRemovePowerup(PowerupStats stats)
         {
@@ -298,6 +324,8 @@ namespace Game.Character.player
             m_VerMoveSpeed *= stats.m_AddSpeed;
         }
 =======
+=======
+>>>>>>> f260879072728bc89455d28b421450bc13595c3f
     public void ActivateFishingLine(GameObject selectedFish)
     {
         m_FishingLine.gameObject.SetActive(true);
@@ -320,8 +348,9 @@ namespace Game.Character.player
     {
         m_HorMoveSpeed *= stats.m_AddSpeed;
         m_VerMoveSpeed *= stats.m_AddSpeed;
+<<<<<<< HEAD
 >>>>>>> Fabio
+=======
+>>>>>>> f260879072728bc89455d28b421450bc13595c3f
     }
 }
-
-

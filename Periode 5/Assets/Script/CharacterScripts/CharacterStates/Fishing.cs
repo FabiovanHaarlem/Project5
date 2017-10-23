@@ -1,11 +1,11 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using System;
-using Game.Character.Ai;
-using Game.Character.player.Powerups;
 
-namespace Game.Character.player
+public class Fishing : ICharacterStates
 {
+<<<<<<< HEAD
 <<<<<<< HEAD
     public class Fishing : ICharacterStates
     {
@@ -91,6 +91,47 @@ namespace Game.Character.player
 
             if (m_CurrentSelectedFish != null && Input.GetKeyDown(m_KeyCodes[0]))
 =======
+=======
+    private IFish m_CurrentSelectedFish;
+    private List<IFish> m_FishInArea;
+    private List<IFish> m_CaughtFish;
+    public Action<IFish> m_Catched;
+
+    private GameObject m_SelectedFishSprite;
+    private CharacterControl m_CharacterControl;
+
+    private string[] m_Inputs;
+    private int m_SelectedFishIndex;
+    private float m_CatchMeter;
+    private bool m_Catching;
+
+
+    public Fishing(CharacterControl characterController, GameObject selectedSprite)
+    {
+        m_Inputs = new string[6];
+        m_CharacterControl = characterController;
+        m_FishInArea = new List<IFish>();
+        m_CaughtFish = new List<IFish>();
+        m_SelectedFishSprite = selectedSprite;
+        m_Catching = false;
+    }
+
+    public void UpdateControls(string[] inputs)
+    {
+        m_Inputs = inputs;
+    }
+
+    public void InitializeState()
+    {
+        m_CurrentSelectedFish = null;
+        m_FishInArea.Clear();
+        m_CaughtFish.Clear();
+        GetAllFishInArea();
+        m_SelectedFishIndex = 0;
+        m_CatchMeter = 0;
+    }
+
+>>>>>>> f260879072728bc89455d28b421450bc13595c3f
 
     public void UpdateState()
     {
@@ -102,7 +143,10 @@ namespace Game.Character.player
         if (m_CurrentSelectedFish != null)
         {
             if (Input.GetButtonDown(m_Inputs[1]) && (m_Catching))
+<<<<<<< HEAD
 >>>>>>> Fabio
+=======
+>>>>>>> f260879072728bc89455d28b421450bc13595c3f
             {
                 Debug.Log("Catching Fish");
 
@@ -118,9 +162,12 @@ namespace Game.Character.player
                 }
             }
 <<<<<<< HEAD
+<<<<<<< HEAD
 
             if (Input.GetKeyDown(m_KeyCodes[4]))
 =======
+=======
+>>>>>>> f260879072728bc89455d28b421450bc13595c3f
             else if (Input.GetButtonDown(m_Inputs[1]) && (!m_Catching))
             {
                 m_CharacterControl.ActivateFishingLine(m_CurrentSelectedFish.GetGameObject);
@@ -146,22 +193,26 @@ namespace Game.Character.player
         {
             m_Catching = false;
             if (m_CaughtFish.Count >= 1)
+<<<<<<< HEAD
 >>>>>>> Fabio
+=======
+>>>>>>> f260879072728bc89455d28b421450bc13595c3f
             {
-                if (M_CaughtFish.Count >= 1)
-                {
-                    ToCarrying();
-                }
-                else
-                {
-                    ToWalking();
-                }      
+                ToCarrying();
             }
+            else
+            {
+                ToWalking();
+            }      
         }
+    }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
         private void SwitchSelectedFish()
 =======
+=======
+>>>>>>> f260879072728bc89455d28b421450bc13595c3f
     public List<IFish> GetCaughtFish()
     {
         return m_CaughtFish;
@@ -170,10 +221,14 @@ namespace Game.Character.player
     private void SwitchSelectedFish()
     {
         if (Input.GetButtonDown(m_Inputs[2]))
+<<<<<<< HEAD
 >>>>>>> Fabio
+=======
+>>>>>>> f260879072728bc89455d28b421450bc13595c3f
         {
-            if (Input.GetKey(m_KeyCodes[2]))
+            if (m_SelectedFishIndex == 0)
             {
+<<<<<<< HEAD
 <<<<<<< HEAD
                 if (m_SelectedFishIndex == 0)
                 {
@@ -188,53 +243,62 @@ namespace Game.Character.player
 =======
                 m_SelectedFishIndex = m_FishInArea.Count - 1;
 >>>>>>> Fabio
+=======
+                m_SelectedFishIndex = m_FishInArea.Count - 1;
+>>>>>>> f260879072728bc89455d28b421450bc13595c3f
             }
-
-            if (Input.GetKey(m_KeyCodes[3]))
+            else if (m_SelectedFishIndex >= 1)
             {
-                if (m_SelectedFishIndex == M_FishInArea.Count)
-                {
-                    m_SelectedFishIndex = 0;
-                }
-                else if (m_SelectedFishIndex <= 1)
-                {
-                    m_SelectedFishIndex += 1;
-                }
-
-                m_CatchMeter = 0;
+                m_SelectedFishIndex -= 1;
             }
+
+            m_CatchMeter = 0;
         }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
         private void CatchFish()
 =======
         if (Input.GetButtonDown(m_Inputs[3]))
 >>>>>>> Fabio
+=======
+        if (Input.GetButtonDown(m_Inputs[3]))
+>>>>>>> f260879072728bc89455d28b421450bc13595c3f
         {
-            if(M_FishInArea.Count > 0)
+            if (m_SelectedFishIndex == m_FishInArea.Count)
             {
-                M_CaughtFish.Add(M_FishInArea[m_SelectedFishIndex]);
-                M_CaughtFish[M_CaughtFish.Count - 1].BeingCatched();
-
-                M_FishInArea.RemoveAt(m_SelectedFishIndex);
                 m_SelectedFishIndex = 0;
-
-
-                M_CaughtFish[M_CaughtFish.Count - 1].Catched();
             }
+            else if (m_SelectedFishIndex <= 1)
+            {
+                m_SelectedFishIndex += 1;
+            }
+
+            m_CatchMeter = 0;
         }
+<<<<<<< HEAD
 <<<<<<< HEAD
 =======
 
         m_CurrentSelectedFish = m_FishInArea[m_SelectedFishIndex];
     }
 >>>>>>> Fabio
+=======
 
-        public void ToWalking()
+        m_CurrentSelectedFish = m_FishInArea[m_SelectedFishIndex];
+    }
+>>>>>>> f260879072728bc89455d28b421450bc13595c3f
+
+    private void CatchFish()
+    {
+        if(m_FishInArea.Count > 0)
         {
+<<<<<<< HEAD
 <<<<<<< HEAD
             M_CharacterControl.SwitchToWalkingState();
 =======
+=======
+>>>>>>> f260879072728bc89455d28b421450bc13595c3f
             m_CaughtFish.Add(m_FishInArea[m_SelectedFishIndex]);
             m_CaughtFish[m_CaughtFish.Count - 1].BeingCatched();
 
@@ -247,44 +311,50 @@ namespace Game.Character.player
             m_CharacterControl.DeactivateFishingLine();
             m_Catching = false;
             m_CatchMeter = 0;
+<<<<<<< HEAD
 >>>>>>> Fabio
+=======
+>>>>>>> f260879072728bc89455d28b421450bc13595c3f
         }
+    }
 
-        public void ToCarrying()
+    public void ToWalking()
+    {
+        m_CharacterControl.SwitchToWalkingState();
+    }
+
+    public void ToCarrying()
+    {
+        m_CharacterControl.SwitchToCarryingState(m_CaughtFish);
+    }
+
+    public void OnTriggerStay(Collider collider)
+    {
+
+    }
+
+    public void OnTriggerExit(Collider collider)
+    {
+        if (collider.gameObject.layer == 8)
         {
-            M_CharacterControl.SwitchToCarryingState(M_CaughtFish);
+            GetAllFishInArea();
         }
+    }
 
-        public void OnTriggerStay(Collider collider)
+    public void OnTriggerEnter(Collider collider)
+    {
+        if (collider.gameObject.layer == 8)
         {
-
+            GetAllFishInArea();
         }
+    }
 
-        public void OnTriggerExit(Collider collider)
-        {
-            if (collider.gameObject.layer == 8)
-            {
-                GetAllFishInArea();
-            }
-        }
+    public void SetCurrentSelecetedFish()
+    {
+        m_CurrentSelectedFish = m_FishInArea[0];        
+    }
 
-        public void OnTriggerEnter(Collider collider)
-        {
-            if (collider.gameObject.layer == 8)
-            {
-                GetAllFishInArea();
-            }
-        }
-
-        public void SetCurrentSelecetedFish()
-        {
-            m_CurrentSelectedFish = M_FishInArea[0];        
-        }
-
-        private void GetAllFishInArea()
-        {
-            M_FishInArea.Clear();
-
+<<<<<<< HEAD
 <<<<<<< HEAD
             Collider[] hitColliders = Physics.OverlapSphere(M_CharacterControl.gameObject.transform.position, 5000f);
 
@@ -301,6 +371,8 @@ namespace Game.Character.player
         {
             M_CharacterControl.M_AddPowerup.Invoke(Power);
 =======
+=======
+>>>>>>> f260879072728bc89455d28b421450bc13595c3f
     private void GetAllFishInArea()
     {
         m_FishInArea.Clear();
@@ -324,10 +396,16 @@ namespace Game.Character.player
                     m_FishInArea.Add(col.gameObject.GetComponent<IFish>());
                 }
             }
+<<<<<<< HEAD
 >>>>>>> Fabio
+=======
+>>>>>>> f260879072728bc89455d28b421450bc13595c3f
         }
-
     }
+
+    public void AddPowerUp(PowerUp Power)
+    {
+        m_CharacterControl.M_AddPowerup.Invoke(Power);
+    }
+
 }
-
-
