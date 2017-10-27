@@ -48,6 +48,9 @@ namespace Game
         //used to refrence how many fish can spawn
         [SerializeField]
         internal int SpawnLimit = 25;
+
+        [SerializeField]
+        public int m_WinRequiredScore;
     
         //a refrence of the game manager to call from other classes
         public static GameManager Singelton { get; private set; }
@@ -66,8 +69,11 @@ namespace Game
             M_Players = new List<GameObject>();
             m_Scores = new List<PlayerScore>();
 
-            //foreach (Text i in m_ScoreBoards)
-            //    i.gameObject.transform.parent.gameObject.SetActive(false);
+            foreach (Text i in m_ScoreBoards)
+                i.gameObject.transform.parent.gameObject.SetActive(false);
+
+            foreach (GameObject i in m_ScorePoints)
+                i.SetActive(false);
         }
 
         //protected void Start()
@@ -81,16 +87,19 @@ namespace Game
         //function to call when creating a new player
         public void RegisterPlayer(CharacterControl Player)
         {
+            Debug.Log("Call");
 
             //making a new score system for the player
             m_Scores.Add(new PlayerScore(Player));
             PlayerScore score = m_Scores[m_Scores.Count -1];
+            m_ScorePoints[m_Scores.Count - 1].SetActive(true);
             m_ScorePoints[m_Scores.Count - 1].AddComponent<ScorePoint>();
-            //m_ScoreBoards[m_Scores.Count - 1].gameObject.transform.parent.gameObject.SetActive(true);
+            m_ScoreBoards[m_Scores.Count - 1].gameObject.transform.parent.gameObject.SetActive(true);
             M_Players.Add(Player.gameObject);
 
             //spawning the UI element
             PoolObject playerstatspool = Pool.Singleton.Spawn(m_PlayerstatsPrefab, m_UI);
+            Pool.Singleton.CreatePoolBasedOnObject(m_ScorePoints[m_Scores.Count - 1].GetComponent<PlayerStats>());
 
 
             GameObject playerstats = playerstatspool.gameObject;
@@ -124,7 +133,7 @@ namespace Game
 
             //call the registerfunction in the UI, this will setup all fields inside of them
             PlayerStats stats = playerstats.GetComponent<PlayerStats>();
-            stats.UpdateID((byte)M_Players.Count, score, 5, m_ScoreBoards[M_Players.Count - 1]);
+            stats.UpdateID((byte)M_Players.Count, score, m_WinRequiredScore, m_ScoreBoards[M_Players.Count - 1]);
 
             //update playerID in the character controller
             Player.SetPlayerID = (byte)M_Players.Count;

@@ -27,7 +27,14 @@ namespace Plugins.ObjectPool
             if (m_Info.Callback != null)
                 m_Info.Callback.Invoke(m_Info.Pool, this, m_Info.Parrent);
             else
-                Debug.LogError("Callback can't be found", transform);
+            {
+                Pool.Singleton.PlaceInPool(this);
+                if(m_Info.Callback == null)
+                    Debug.LogError("Callback can't be found", transform);
+                else
+                    m_Info.Callback.Invoke(m_Info.Pool, this, m_Info.Parrent);
+            }
+
         
             gameObject.SetActive(false);
         }

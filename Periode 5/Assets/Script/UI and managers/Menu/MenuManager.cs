@@ -17,14 +17,13 @@ namespace Game.UI
         private void Start()
         {
             m_animator = GetComponent<Animator>();
-            m_MainBehaviour = m_animator.GetBehaviour<MenuMainBehaviour>();
-            m_CreditBehaviour = m_animator.GetBehaviour<MenuCreditsBehaviour>();
             m_PlayerCount = 2;
         }
 
         private void Update()
         {
             m_TextPlayerCount.text = m_PlayerCount.ToString();
+            m_animator.SetInteger("CurrentScreen", m_CurrentMenuScreen);
         }
     }
 
@@ -83,7 +82,6 @@ namespace Game.UI
             //get root objects of newly loaded scene
             GameObject[] rootobjects = Level.GetRootGameObjects();
 
-            Pool mypool;
             GameManager mymanager = null;
             GameObject[] SpawnPoints = null;
 
@@ -95,10 +93,6 @@ namespace Game.UI
                     mymanager = i.GetComponent<GameManager>();
                     SpawnPoints = mymanager.GetScorePoints;
                 }
-
-
-                if (i.GetComponent<Pool>() != null)
-                    mypool = i.GetComponent<Pool>();
             }
 
             //spawns an amount of players according to setting in this manager
@@ -119,35 +113,12 @@ namespace Game.UI
 
         private byte m_CurrentMenuScreen;
 
-        private MenuMainBehaviour m_MainBehaviour;
-        private MenuCreditsBehaviour m_CreditBehaviour;
-    }
-
-    //parrent class for animator behaviours for menu
-    public class MenuStatesAnimatorParrent : StateMachineBehaviour
-    {
-        protected MenuManager m_Manager;
-
-        public void SetManager(MenuManager manager) { m_Manager = manager; }
-
-        [SerializeField][Tooltip("Object that will be lerped")]
-        private Transform LerpObj;
-
-        [SerializeField][Tooltip("Postion to lerp to once in this state")]
-        private Transform m_EndPosition;
-        private float m_Timer;
-
-        override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
+        public void Switchscreen(int index)
         {
-            m_Timer = 0;
+            m_CurrentMenuScreen = (byte)index;
         }
-        override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
-        {
-            LerpObj.position = Vector3.LerpUnclamped(LerpObj.position, m_EndPosition.position, m_Timer);
 
-            if (m_Timer < 1)
-                m_Timer += Time.deltaTime;
-        }
+
     }
 }
 
