@@ -15,10 +15,10 @@ namespace Game.UI
         internal PlayerCurrentScore GetScore() { return M_Struct; }
 
         //refrence to the object that is being observed
-        private CharacterControl M_PlayerController { get; }
+        private CharacterControl M_PlayerController;
 
         //a list to check what fish have been cought to check when to add a point to player
-        private List<IFish> CoughtFish { get; }
+        private List<IFish> CoughtFish;
 
         public PlayerScore(CharacterControl observer)
         {

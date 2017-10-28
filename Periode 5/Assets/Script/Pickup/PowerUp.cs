@@ -3,7 +3,9 @@ using System;
 
 namespace Game.Character.player.Powerups
 {
+    //callback that will be called upon depleetment of the timer
     internal delegate void RemovePowerupEffectDelegate(PowerupStats stats);
+    //callback to remove powerup in UI
     internal delegate void RemovePowerupPoolDelegate(PowerUp powerUp);
 
     [Serializable]
@@ -21,15 +23,15 @@ namespace Game.Character.player.Powerups
     }
 
     [CreateAssetMenu(fileName = "NewHat", menuName = "Hat", order = 1)]
-    class ScriptablePowerUp : ScriptableObject
+    public class ScriptablePowerUp : ScriptableObject
     {
         //info of object is stored here
         [SerializeField][Tooltip("Power Stats go in here")]
-        public PowerupStats stats;
+        internal PowerupStats stats;
 
         //image used for UI will go here
         [SerializeField][Tooltip("image used for UI will go here")]
-        public Sprite m_Image;
+        internal Sprite m_Image;
     }
 
     public class PowerUp
@@ -37,10 +39,10 @@ namespace Game.Character.player.Powerups
         //used for update
         private PowerupStats M_States;
 
-        internal RemovePowerupEffectDelegate m_RemoveCallBack;
-        internal RemovePowerupPoolDelegate m_RemovePoolCallback;
+        private RemovePowerupEffectDelegate m_RemoveCallBack;
+        internal RemovePowerupPoolDelegate m_RemovePoolCallback ;
 
-        private Sprite M_Image { get; }
+        private Sprite M_Image;
         public Sprite GetSprite() { return M_Image; }
 
         internal PowerUp(PowerupStats stats, RemovePowerupEffectDelegate callback, Sprite sprite)

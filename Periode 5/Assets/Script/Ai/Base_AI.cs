@@ -35,8 +35,8 @@ namespace Game.Character.Ai
 
         protected override void Deactivate()
         {
-            base.Deactivate();
             m_Agent.SetDestination(transform.position);
+            base.Deactivate();
         }
 
         protected virtual void AiUpdater()

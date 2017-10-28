@@ -8,7 +8,21 @@ namespace Plugins.ObjectPool
 {
     public sealed class Pool : MonoBehaviour {
 
-        public static Pool Singleton { get; private set; }
+        private static Pool m_Pool;
+        public static Pool Singleton
+        {
+            get
+            {
+                if(m_Pool == null)
+                {
+                    GameObject obj = Instantiate(new GameObject("ObjectPool"));
+                    m_Pool = obj.AddComponent<Pool>();
+                }
+
+                return m_Pool;
+
+            }
+        }
         private List<KeyValuePair<List<PoolObject>, string>> m_Pools;
 
         public Poolobj[] ObjectList;
@@ -26,8 +40,8 @@ namespace Plugins.ObjectPool
         private void Awake()
         {
             //making pool static instance
-            if (Singleton == null)
-                Singleton = this;
+            if (m_Pool == null)
+                m_Pool = this;
             else
             {
                 Destroy(gameObject);
@@ -171,15 +185,17 @@ namespace Plugins.ObjectPool
                 if (prefab == null)
                     return null;
 
+
                 PoolObject obj = RemoveFromPool(GetPool(prefab.name));
 
                 if (obj == null)
                 {
-                    Debug.LogWarning("Not enough " + prefab.name + " in objectpool, " + 2 + " new " + prefab.name + " has been instantiated.");
                     obj = RemoveFromPool(LoadExtraItems(new Poolobj() { m_Amount = 2, m_Prefab = prefab }));
+                    Debug.LogWarning("Not enough " + prefab.name + " in objectpool, " + 2 + " new " + prefab.name + " has been instantiated.");
                 }
 
-                return obj;
+
+            return obj;
             }
             /// <summary>
             /// Spawn object with the given prefab, if no object avalible pool will make more instances
@@ -469,7 +485,72 @@ namespace Plugins.ObjectPool
                 return obj;
             }
 
-            #endregion
+            /// <summary>
+            /// will return a the pool list of the newly created pool and returns the name it can be found under
+            /// </summary>
+            /// <param name="obj"></param>
+            /// <returns></returns>
+            public KeyValuePair<List<PoolObject>, string> CreatePoolBasedOnObject(PoolObject obj)
+            {
+                //create new pool
+                if(obj != null)
+                {
+                    KeyValuePair<List<PoolObject>, string> newpool = new KeyValuePair<List<PoolObject>, string>(new List<PoolObject>(), obj.gameObject.name);
+
+                    m_Pools.Add(newpool);
+
+                    return newpool;
+                }
+
+                return new KeyValuePair<List<PoolObject>, string>();
+            }
+        /// <summary>
+        /// will return a the pool list of the newly created pool and returns the name it can be found under, will also take a number of how many you already want to instantiate
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <returns></returns>
+            public KeyValuePair<List<PoolObject>, string> CreatePoolBasedOnObject(PoolObject obj, int Amount)
+            {
+                KeyValuePair<List<PoolObject>, string> newpool = CreatePoolBasedOnObject(obj);
+
+                //create a spawnitem
+                Poolobj spawnobj = new Poolobj()
+                {
+                    m_Amount = 1,
+                    m_Prefab = CreateClonePrefab(obj.gameObject)
+                };
+
+                //spawn item in pool
+                LoadExtraItems(spawnobj);
+
+                return newpool;
+            }
+
+            private GameObject CreateClonePrefab(GameObject input)
+            {
+                GameObject new_obj = new GameObject(input.gameObject.name);
+                foreach (Component j in input.gameObject.GetComponents<Component>())
+                {
+                    Component newcomponent = new_obj.AddComponent<Component>();
+                    newcomponent = j;
+                }
+                return new_obj;
+            }
+
+            public void PlaceInPool(PoolObject input)
+            {
+                List<PoolObject> pool = GetPool(input.name);
+                if (pool == null)
+                    CreatePoolBasedOnObject(input).Key.Add(input);
+                else
+                    pool.Add(input);
+
+                LoadExtraItems(new Poolobj() { m_Amount = 0, m_Prefab = input.gameObject });
+                Transform Parrent = transform.Find(input.name);
+                SpawnInPool(Parrent, input.gameObject, pool);
+            }
+
+        #endregion
 
         /// <summary>
         /// PoolObject callback when object gets deactivated they will call this function to place them back in their pool
@@ -527,7 +608,7 @@ namespace Plugins.ObjectPool
             };
 
             pool[pool.Count - 1].Initialize(info);
-            return pool[pool.Count - 1];
+            return obj;
         }
 
         /// <summary>
@@ -539,7 +620,7 @@ namespace Plugins.ObjectPool
         internal List<PoolObject> LoadExtraItems(Poolobj Input)
         {
 
-            List<PoolObject> output = null;
+            List<PoolObject> output = GetPool(Input.m_Prefab.name);
 
             if (GetPool(Input.m_Prefab.name) == null)
             {
@@ -558,10 +639,9 @@ namespace Plugins.ObjectPool
             }
             else
             {
+                Transform Parrent = transform.Find(Input.m_Prefab.name);
                 for (int j = 0; j < Input.m_Amount; j++)
                 {
-                    Transform Parrent = transform.Find(Input.m_Prefab.name);
-                    output = GetPool(Input.m_Prefab.name);
                     SpawnInPool(Parrent, Input.m_Prefab, output);
                 }
             }

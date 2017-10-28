@@ -8,25 +8,25 @@ namespace Game.UI
 {
     public class PlayerStats : PoolObject {
 
-        //will be set inside registerplayer in game manager
-        private Text m_ScoreGoalText;
+        ////will be set inside registerplayer in game manager
+        //private Text m_ScoreGoalText;
 
         //score slider
         [SerializeField]
         private Text m_CurrentscorefieldText;
-        [SerializeField]
-        private Slider m_CurrentScoreSlider;
+        //[SerializeField]
+        //private Slider m_CurrentScoreSlider;
 
         private PlayerScore m_ScoreSystem;
         private int m_ScoreGoal;
 
-        [SerializeField]
-        private Image[] m_PowerupImages = new Image[8];
+        //[SerializeField]
+        //private Image[] m_PowerupImages = new Image[8];
 
         internal override void Initialize(PoolObjectInfo Info)
         {
-            for (int i = 0; i < m_PowerupImages.Length; i++)
-                m_PowerupImages[i].enabled = false;
+            //for (int i = 0; i < m_PowerupImages.Length; i++)
+            //    m_PowerupImages[i].enabled = false;
 
             base.Initialize(Info);
         }
@@ -48,20 +48,20 @@ namespace Game.UI
                 //used to update the active powerups and draw images of them on UI
                 for (int i = 0; i < m_ScoreSystem.GetScore().CurrentPowerups.Count; i++)
                 {
-                    m_PowerupImages[i].enabled = false;
+                    //m_PowerupImages[i].enabled = false;
                     PowerUp powerup = m_ScoreSystem.GetScore().CurrentPowerups[i];
                     powerup.Update();
 
-                    if (i < m_PowerupImages.Length)
-                    {
-                        m_PowerupImages[i].enabled = true;
-                        m_PowerupImages[i].sprite = powerup.GetSprite();
-                    }
+                    //if (i < m_PowerupImages.Length)
+                    //{
+                    //    m_PowerupImages[i].enabled = true;
+                    //    m_PowerupImages[i].sprite = powerup.GetSprite();
+                    //}
                 }
 
                 //updating the textfields
                 m_CurrentscorefieldText.text = m_ScoreSystem.GetScore().Score.ToString(); ;
-                m_CurrentScoreSlider.value = m_ScoreSystem.GetScore().Score / m_ScoreGoal; 
+                //m_CurrentScoreSlider.value = m_ScoreSystem.GetScore().Score / m_ScoreGoal; 
             } 
         }
 
@@ -69,7 +69,7 @@ namespace Game.UI
         protected override void Deactivate()
         {
             base.Deactivate();
-            m_ScoreGoalText.text = "Fish Goal ";
+            //m_ScoreGoalText.text = "Fish Goal ";
             m_ScoreGoal = 0;
             m_ScoreSystem = null;
         }
