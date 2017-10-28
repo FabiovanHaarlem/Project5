@@ -1,8 +1,7 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
-using Game.Character.player;
 using Game.Character.Ai;
-using Game.Character.player.Powerups;
+using Game.Event;
 
 namespace Game.UI
 {
@@ -83,7 +82,7 @@ namespace Game.UI
         private void AddPowerup(PowerUp Power)
         {
             //making a callback to call when time runs out
-            Power.m_RemovePoolCallback += RemovePowerup;
+            Power.M_RemovePoolCallback += RemovePowerup;
             M_Struct.CurrentPowerups.Add(Power);
         }
 

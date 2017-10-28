@@ -30,6 +30,7 @@ namespace Game.UI
     //setting Settings
     public partial class MenuManager : MonoBehaviour {
 
+        [SerializeField]
         private int m_FishSpawningLimit;
 
         private byte m_PlayerCount;
@@ -100,6 +101,8 @@ namespace Game.UI
             {
                 Pool.Singleton.Spawn(mymanager.GetPlayerPrefab, SpawnPoints[i].transform.position);
             }
+
+            GameManager.Singelton.SpawnLimit = m_FishSpawningLimit;
 
             //unload current scene
             SceneManager.UnloadSceneAsync(m_CurrentSceneName);

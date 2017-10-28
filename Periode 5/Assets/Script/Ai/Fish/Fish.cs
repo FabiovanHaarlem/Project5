@@ -1,7 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.AI;
 using Plugins.ObjectPool;
-using Game.Character.player;
 
 namespace Game.Character.Ai
 {

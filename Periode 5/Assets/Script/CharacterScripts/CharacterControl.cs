@@ -3,9 +3,10 @@ using UnityEngine;
 using System;
 using Plugins.ObjectPool;
 using Game.Character.Ai;
-using Game.Character.player.Powerups;
 using Game;
 using Game.Character.Pickup;
+using Game.Event;
+using Game.Scriptable;
 
 public class CharacterControl : PoolObject
 {
@@ -227,7 +228,7 @@ public class CharacterControl : PoolObject
 
     private void PickUp(ScriptablePowerUp power)
     {
-        PowerUp powerup = new PowerUp(power.stats, new RemovePowerupEffectDelegate(AddRemovePowerup), power.m_Image);
+        PowerUp powerup = new PowerUp(power.m_Stats, new RemovePowerupEffectDelegate(AddRemovePowerup), power.m_Image);
 
         M_AddPowerup.Invoke(powerup);
     }

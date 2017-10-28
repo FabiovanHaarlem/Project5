@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 using Game.Character.Ai;
-using Game.Character.player.Powerups;
+using Game.Event;
 
 public class CarryingFish : ICharacterStates
 {

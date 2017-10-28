@@ -1,10 +1,12 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using Plugins.ObjectPool;
 using Game.UI;
 using Game.Character.Pickup;
+using Game.Scriptable;
+using Game.Event;
+using UnityEditor;
 
 namespace Game
 {
@@ -51,6 +53,8 @@ namespace Game
 
         [SerializeField]
         public int m_WinRequiredScore;
+
+        private List<WorldEvent> m_ActiveWorldEvents;
     
         //a refrence of the game manager to call from other classes
         public static GameManager Singelton { get; private set; }
@@ -74,15 +78,9 @@ namespace Game
 
             foreach (GameObject i in m_ScorePoints)
                 i.SetActive(false);
-        }
 
-        //protected void Start()
-        //{
-        //    for (int i = 0; i < m_ScorePoints.Length; i++)
-        //    {
-        //        Pool.Singleton.Spawn(m_playerPrefab, m_ScorePoints[i].transform.position);
-        //    }
-        //}
+            m_ActiveWorldEvents = new List<WorldEvent>();
+        }
 
         //function to call when creating a new player
         public void RegisterPlayer(CharacterControl Player)
@@ -139,10 +137,26 @@ namespace Game
             Player.SetPlayerID = (byte)M_Players.Count;
         }
 
+        public void RegisterWorldEvent(ScriptableWorldEvent NewEvent)
+        {
+            WorldEvent actual = NewEvent.CreateInstance(NewEvent.m_TimeActive, new RemoveWorldEventPoolDelegate(DestroyWorldEvent));
+            m_ActiveWorldEvents.Add(actual);
+            EditorUtility.SetDirty(NewEvent);
+
+        }
+
+        private void DestroyWorldEvent(WorldEvent EndEvent)
+        {
+            m_ActiveWorldEvents.Remove(EndEvent);
+        }
+
         protected void Update()
         {
-            if(Input.GetKeyDown(KeyCode.RightAlt))
-                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+
+            for (int i = 0; i < m_ActiveWorldEvents.Count; i++)
+            {
+                m_ActiveWorldEvents[i].Update();
+            }
         }
 
     }

@@ -1,8 +1,6 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using Game.Character.player.Powerups;
+﻿using UnityEngine;
 using Plugins.ObjectPool;
+using Game.Scriptable;
 
 namespace Game.Character.Pickup
 {

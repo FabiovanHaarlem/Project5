@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using Plugins.ObjectPool;
-using Game.Character.player.Powerups;
+using Game.Event;
 
 
 namespace Game.UI
