@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 using Game.Character.Ai;
-using Game.Character.player.Powerups;
+using Game.Event;
 
 public class Fishing : ICharacterStates
 {

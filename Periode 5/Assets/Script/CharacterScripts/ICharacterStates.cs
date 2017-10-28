@@ -1,5 +1,5 @@
 ﻿using UnityEngine;
-using Game.Character.player.Powerups;
+using Game.Event;
 
 public interface ICharacterStates
 {
