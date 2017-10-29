@@ -1334,6 +1334,12 @@ Prefab:
       propertyPath: m_WinRequiredScore
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 114889958758364240, guid: 6c839c10a41c9ac40b93173f962e8f86,
+        type: 2}
+      propertyPath: m_WinScreen
+      value: 
+      objectReference: {fileID: 1718029196721010, guid: 28496a06d2b936b4c98610916e5a1242,
+        type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 6c839c10a41c9ac40b93173f962e8f86, type: 2}
   m_IsPrefabParent: 0
@@ -1605,8 +1611,8 @@ RectTransform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 781884031}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 450, y: 253, z: 0}
-  m_LocalScale: {x: 0.46863425, y: 0.46863425, z: 0.46863425}
+  m_LocalPosition: {x: 436.5, y: 245.5, z: 0}
+  m_LocalScale: {x: 0.45465857, y: 0.45465857, z: 0.45465857}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 5

@@ -11,10 +11,23 @@ namespace Game.UI
         private PlayerCurrentScore M_Struct;
 
         //function to get the score of this scoremanager
-        internal PlayerCurrentScore GetScore() { return M_Struct; }
+        internal float Score
+        {
+            get
+            {
+                return M_Struct.Score;
+            }
+        }
+        internal PowerUp[] Powerups
+        {
+            get
+            {
+                return M_Struct.CurrentPowerups.ToArray();
+            }
+        }
 
         //refrence to the object that is being observed
-        private CharacterControl M_PlayerController;
+        public CharacterControl M_PlayerController { private set; get; }
 
         //a list to check what fish have been cought to check when to add a point to player
         private List<IFish> CoughtFish;

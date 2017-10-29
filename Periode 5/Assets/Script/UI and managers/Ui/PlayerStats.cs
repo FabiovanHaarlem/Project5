@@ -46,10 +46,10 @@ namespace Game.UI
             if (m_ScoreSystem != null)
             {
                 //used to update the active powerups and draw images of them on UI
-                for (int i = 0; i < m_ScoreSystem.GetScore().CurrentPowerups.Count; i++)
+                for (int i = 0; i < m_ScoreSystem.Powerups.Length; i++)
                 {
                     //m_PowerupImages[i].enabled = false;
-                    PowerUp powerup = m_ScoreSystem.GetScore().CurrentPowerups[i];
+                    PowerUp powerup = m_ScoreSystem.Powerups[i];
                     powerup.Update();
 
                     //if (i < m_PowerupImages.Length)
@@ -60,7 +60,7 @@ namespace Game.UI
                 }
 
                 //updating the textfields
-                m_CurrentscorefieldText.text = m_ScoreSystem.GetScore().Score.ToString(); ;
+                m_CurrentscorefieldText.text = m_ScoreSystem.Score.ToString(); ;
                 //m_CurrentScoreSlider.value = m_ScoreSystem.GetScore().Score / m_ScoreGoal; 
             } 
         }
