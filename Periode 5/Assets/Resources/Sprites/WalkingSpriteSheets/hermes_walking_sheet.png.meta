@@ -1,13 +1,38 @@
 fileFormatVersion: 2
 guid: 72c59425dc75f52448010646745fe62b
-timeCreated: 1508680458
+timeCreated: 1509298875
 licenseType: Free
 TextureImporter:
-  fileIDToRecycleName: {}
+  fileIDToRecycleName:
+    21300000: HermesWalkDown0
+    21300002: hermes_walking_sheet_0
+    21300004: HermesWalkDown1
+    21300006: HermesWalkDown2
+    21300008: HermesWalkDown3
+    21300010: HermesWalkDown4
+    21300012: HermesWalkDown5
+    21300014: HermesWalkDown6
+    21300016: HermesWalkDown7
+    21300018: HermesWalkUp0
+    21300020: HermesWalkUp1
+    21300022: HermesWalkUp2
+    21300024: HermesWalkUp3
+    21300026: HermesWalkUp4
+    21300028: HermesWalkUp5
+    21300030: HermesWalkUp6
+    21300032: HermesWalkUp7
+    21300034: HermesWalkSide0
+    21300036: HermesWalkSide1
+    21300038: HermesWalkSide2
+    21300040: HermesWalkSide3
+    21300042: HermesWalkSide4
+    21300044: HermesWalkSide5
+    21300046: HermesWalkSide6
+    21300048: HermesWalkSide7
   serializedVersion: 4
   mipmaps:
     mipMapMode: 0
-    enableMipMap: 1
+    enableMipMap: 0
     sRGBTexture: 1
     linearTexture: 0
     fadeOut: 0
@@ -33,13 +58,13 @@ TextureImporter:
     filterMode: -1
     aniso: -1
     mipBias: -1
-    wrapU: -1
+    wrapU: 1
     wrapV: -1
     wrapW: -1
-  nPOTScale: 1
+  nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 0
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -47,9 +72,9 @@ TextureImporter:
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spritePixelsToUnits: 100
   alphaUsage: 1
-  alphaIsTransparency: 0
+  alphaIsTransparency: 1
   spriteTessellationDetail: -1
-  textureType: 0
+  textureType: 8
   textureShape: 1
   maxTextureSizeSet: 0
   compressionQualitySet: 0
@@ -63,9 +88,391 @@ TextureImporter:
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
+  - buildTarget: Standalone
+    maxTextureSize: 2048
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+  - buildTarget: Android
+    maxTextureSize: 2048
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+  - buildTarget: Windows Store Apps
+    maxTextureSize: 2048
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+  - buildTarget: WebGL
+    maxTextureSize: 2048
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: HermesWalkDown0
+      rect:
+        serializedVersion: 2
+        x: 111
+        y: 2285
+        width: 314
+        height: 652
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: hermes_walking_sheet_0
+      rect:
+        serializedVersion: 2
+        x: 111
+        y: 2285
+        width: 314
+        height: 652
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: HermesWalkDown1
+      rect:
+        serializedVersion: 2
+        x: 662
+        y: 2285
+        width: 294
+        height: 645
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: HermesWalkDown2
+      rect:
+        serializedVersion: 2
+        x: 1190
+        y: 2285
+        width: 303
+        height: 622
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: HermesWalkDown3
+      rect:
+        serializedVersion: 2
+        x: 1730
+        y: 2285
+        width: 317
+        height: 631
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: HermesWalkDown4
+      rect:
+        serializedVersion: 2
+        x: 2277
+        y: 2290
+        width: 299
+        height: 646
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: HermesWalkDown5
+      rect:
+        serializedVersion: 2
+        x: 2804
+        y: 2294
+        width: 308
+        height: 624
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: HermesWalkDown6
+      rect:
+        serializedVersion: 2
+        x: 3352
+        y: 2287
+        width: 289
+        height: 627
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: HermesWalkDown7
+      rect:
+        serializedVersion: 2
+        x: 3862
+        y: 2290
+        width: 319
+        height: 626
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: HermesWalkUp0
+      rect:
+        serializedVersion: 2
+        x: 127
+        y: 1555
+        width: 293
+        height: 662
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: HermesWalkUp1
+      rect:
+        serializedVersion: 2
+        x: 644
+        y: 1550
+        width: 315
+        height: 625
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: HermesWalkUp2
+      rect:
+        serializedVersion: 2
+        x: 1187
+        y: 1557
+        width: 315
+        height: 620
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: HermesWalkUp3
+      rect:
+        serializedVersion: 2
+        x: 1728
+        y: 1553
+        width: 310
+        height: 633
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: HermesWalkUp4
+      rect:
+        serializedVersion: 2
+        x: 2266
+        y: 1555
+        width: 326
+        height: 647
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: HermesWalkUp5
+      rect:
+        serializedVersion: 2
+        x: 2797
+        y: 1557
+        width: 339
+        height: 622
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: HermesWalkUp6
+      rect:
+        serializedVersion: 2
+        x: 3338
+        y: 1557
+        width: 323
+        height: 620
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: HermesWalkUp7
+      rect:
+        serializedVersion: 2
+        x: 3865
+        y: 1555
+        width: 314
+        height: 619
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: HermesWalkSide0
+      rect:
+        serializedVersion: 2
+        x: 143
+        y: 829
+        width: 287
+        height: 640
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: HermesWalkSide1
+      rect:
+        serializedVersion: 2
+        x: 663
+        y: 820
+        width: 296
+        height: 635
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: HermesWalkSide2
+      rect:
+        serializedVersion: 2
+        x: 1180
+        y: 818
+        width: 322
+        height: 630
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: HermesWalkSide3
+      rect:
+        serializedVersion: 2
+        x: 1755
+        y: 818
+        width: 274
+        height: 639
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: HermesWalkSide4
+      rect:
+        serializedVersion: 2
+        x: 2284
+        y: 824
+        width: 292
+        height: 643
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: HermesWalkSide5
+      rect:
+        serializedVersion: 2
+        x: 2818
+        y: 817
+        width: 287
+        height: 643
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: HermesWalkSide6
+      rect:
+        serializedVersion: 2
+        x: 3353
+        y: 817
+        width: 295
+        height: 634
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: HermesWalkSide7
+      rect:
+        serializedVersion: 2
+        x: 3867
+        y: 815
+        width: 303
+        height: 645
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
     outline: []
     physicsShape: []
   spritePackingTag: 

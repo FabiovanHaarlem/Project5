@@ -107,24 +107,36 @@ namespace Game
                 case 1:
                     playerstatstransform.localPosition = new Vector3(6, -2, 0);
                     Player.ModifyControls("Controller1AButton", "Controller1XButton", "Controller1LeftBumper", "Controller1RightBumper", "Controller1JoystickHorizontal", "Controller1JoystickVertical");
+                    RuntimeAnimatorController animator0 = (RuntimeAnimatorController)Resources.Load("CharacterAnimations//Flint//FlintAnimator", typeof(RuntimeAnimatorController));
+                    Sprite dobberSprite0 = (Sprite)Resources.Load("Sprites//Dobbers//FlintDobber");
+                    Player.SetAnimator(animator0, dobberSprite0);
                     m_ScorePoints[0].GetComponent<ScorePoint>().m_PlayerID = 1;
                     break;
 
                 case 2:
                     playerstatstransform.localPosition = new Vector3(-6, -2, 0);
                     Player.ModifyControls("Controller2AButton", "Controller2XButton", "Controller2LeftBumper", "Controller2RightBumper", "Controller2JoystickHorizontal", "Controller2JoystickVertical");
+                    RuntimeAnimatorController animator1 = (RuntimeAnimatorController)Resources.Load("CharacterAnimations//Gladianus//GladianusAnimator", typeof(RuntimeAnimatorController));
+                    Sprite dobberSprite1 = (Sprite)Resources.Load("Sprites//Dobbers//GladianusDobber");
+                    Player.SetAnimator(animator1, dobberSprite1);
                     m_ScorePoints[1].GetComponent<ScorePoint>().m_PlayerID = 2;
                     break;
 
                 case 3:
                     playerstatstransform.localPosition = new Vector3(6, 2, 0);
                     Player.ModifyControls("Controller3AButton", "Controller3XButton", "Controller3LeftBumper", "Controller3RightBumper", "Controller3JoystickHorizontal", "Controller3JoystickVertical");
+                    RuntimeAnimatorController animator2 = (RuntimeAnimatorController)Resources.Load("CharacterAnimations//Hermes//HermesAnimator", typeof(RuntimeAnimatorController));
+                    Sprite dobberSprite2 = (Sprite)Resources.Load("Sprites//Dobbers//HermesDobber");
+                    Player.SetAnimator(animator2, dobberSprite2);
                     m_ScorePoints[2].GetComponent<ScorePoint>().m_PlayerID = 3;
                     break;
 
                 case 4:
                     playerstatstransform.localPosition = new Vector3(-6, 2, 0);
                     Player.ModifyControls("Controller4AButton", "Controller4XButton", "Controller4LeftBumper", "Controller4RightBumper", "Controller4JoystickHorizontal", "Controller4JoystickVertical");
+                    RuntimeAnimatorController animator3 = (RuntimeAnimatorController)Resources.Load("CharacterAnimations//Ming//MingAnimator", typeof(RuntimeAnimatorController));
+                    Sprite dobberSprite3 = (Sprite)Resources.Load("Sprites//Dobbers//MingDobber");
+                    Player.SetAnimator(animator3, dobberSprite3);
                     m_ScorePoints[3].GetComponent<ScorePoint>().m_PlayerID = 4;
                     break;
             }

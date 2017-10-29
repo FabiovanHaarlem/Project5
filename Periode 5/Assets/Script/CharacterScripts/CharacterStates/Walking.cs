@@ -4,19 +4,24 @@ using Game.Event;
 public class Walking : ICharacterStates
 {
     private CharacterControl m_CharacterController;
+    private Animator m_Animator;
+    private Transform m_Transform;
 
     private string[] m_Inputs;
     private float m_HorMoveSpeed;
     private float m_VerMoveSpeed;
     private float m_AttackCooldown;
+    private float m_PlayerScale;
 
-    public Walking(CharacterControl characterController, ref float horMoveSpeed, ref float verMoveSpeed)
+    public Walking(CharacterControl characterController, ref float horMoveSpeed, ref float verMoveSpeed, Animator animator, Transform transform)
     {
         m_Inputs = new string[6];
         m_CharacterController = characterController;
         m_HorMoveSpeed = horMoveSpeed;
         m_VerMoveSpeed = verMoveSpeed;
-
+        m_Animator = animator;
+        m_Transform = transform;
+        m_PlayerScale = m_Transform.localScale.x;
     }
 
     public void UpdateControls(string[] inputs)
@@ -38,6 +43,33 @@ public class Walking : ICharacterStates
         }
 
         m_CharacterController.gameObject.transform.position += new Vector3(-Input.GetAxis(m_Inputs[4]), 0, Input.GetAxis(m_Inputs[5])) * Time.deltaTime;
+
+        if (-Input.GetAxis(m_Inputs[4]) < -0.2f)
+        {
+            m_Animator.SetInteger("State", 3);
+            m_Transform.localScale = new Vector3(-m_PlayerScale, m_Transform.localScale.y, m_Transform.localScale.z);
+        }
+        else if (-Input.GetAxis(m_Inputs[4]) > 0.2f)
+        {
+            m_Animator.SetInteger("State", 4);
+            m_Transform.localScale = new Vector3(m_PlayerScale, m_Transform.localScale.y, m_Transform.localScale.z);
+        }
+
+        if (Input.GetAxis(m_Inputs[5]) < -0.2f)
+        {
+            m_Animator.SetInteger("State", 1);
+            m_Transform.localScale = new Vector3(m_PlayerScale, m_Transform.localScale.y, m_Transform.localScale.z);
+        }
+        else if (Input.GetAxis(m_Inputs[5]) > 0.2f)
+        {
+            m_Animator.SetInteger("State", 2);
+            m_Transform.localScale = new Vector3(m_PlayerScale, m_Transform.localScale.y, m_Transform.localScale.z);
+        }
+        else
+        {
+            m_Animator.SetInteger("State", 0);
+            m_Transform.localScale = new Vector3(m_PlayerScale, m_Transform.localScale.y, m_Transform.localScale.z);
+        }
     }
 
     public void ToFishing()

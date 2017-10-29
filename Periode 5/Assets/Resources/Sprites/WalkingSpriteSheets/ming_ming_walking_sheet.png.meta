@@ -1,13 +1,37 @@
 fileFormatVersion: 2
 guid: 7d84703d1f493484dbd10b5bcc95eef2
-timeCreated: 1508680459
+timeCreated: 1509299436
 licenseType: Free
 TextureImporter:
-  fileIDToRecycleName: {}
+  fileIDToRecycleName:
+    21300000: MingWalkUp0
+    21300002: MingWalkUp1
+    21300004: MingWalkUp2
+    21300006: MingWalkUp3
+    21300008: MingWalkUp4
+    21300010: MingWalkUp5
+    21300012: MingWalkUp6
+    21300014: MingWalkUp7
+    21300016: MingWalkDown0
+    21300018: MingWalkDown1
+    21300020: MingWalkDown2
+    21300022: MingWalkDown3
+    21300024: MingWalkDown4
+    21300026: MingWalkDown5
+    21300028: MingWalkDown6
+    21300030: MingWalkDown7
+    21300032: MingWalkSide0
+    21300034: MingWalkSide1
+    21300036: MingWalkSide2
+    21300038: MingWalkSide3
+    21300040: MingWalkSide4
+    21300042: MingWalkSide5
+    21300044: MingWalkSide6
+    21300046: MingWalkSide7
   serializedVersion: 4
   mipmaps:
     mipMapMode: 0
-    enableMipMap: 1
+    enableMipMap: 0
     sRGBTexture: 1
     linearTexture: 0
     fadeOut: 0
@@ -33,13 +57,13 @@ TextureImporter:
     filterMode: -1
     aniso: -1
     mipBias: -1
-    wrapU: -1
+    wrapU: 1
     wrapV: -1
     wrapW: -1
-  nPOTScale: 1
+  nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 0
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -47,9 +71,9 @@ TextureImporter:
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spritePixelsToUnits: 100
   alphaUsage: 1
-  alphaIsTransparency: 0
+  alphaIsTransparency: 1
   spriteTessellationDetail: -1
-  textureType: 0
+  textureType: 8
   textureShape: 1
   maxTextureSizeSet: 0
   compressionQualitySet: 0
@@ -63,9 +87,377 @@ TextureImporter:
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
+  - buildTarget: Standalone
+    maxTextureSize: 2048
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+  - buildTarget: Android
+    maxTextureSize: 2048
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+  - buildTarget: Windows Store Apps
+    maxTextureSize: 2048
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+  - buildTarget: WebGL
+    maxTextureSize: 2048
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: MingWalkUp0
+      rect:
+        serializedVersion: 2
+        x: 62
+        y: 2302
+        width: 423
+        height: 565
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: MingWalkUp1
+      rect:
+        serializedVersion: 2
+        x: 598
+        y: 2299
+        width: 423
+        height: 554
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: MingWalkUp2
+      rect:
+        serializedVersion: 2
+        x: 1137
+        y: 2290
+        width: 412
+        height: 562
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: MingWalkUp3
+      rect:
+        serializedVersion: 2
+        x: 1663
+        y: 2299
+        width: 433
+        height: 560
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: MingWalkUp4
+      rect:
+        serializedVersion: 2
+        x: 2209
+        y: 2302
+        width: 416
+        height: 562
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: MingWalkUp5
+      rect:
+        serializedVersion: 2
+        x: 2746
+        y: 2300
+        width: 418
+        height: 555
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: MingWalkUp6
+      rect:
+        serializedVersion: 2
+        x: 3288
+        y: 2302
+        width: 418
+        height: 542
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: MingWalkUp7
+      rect:
+        serializedVersion: 2
+        x: 3806
+        y: 2295
+        width: 423
+        height: 561
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: MingWalkDown0
+      rect:
+        serializedVersion: 2
+        x: 61
+        y: 1567
+        width: 418
+        height: 567
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: MingWalkDown1
+      rect:
+        serializedVersion: 2
+        x: 595
+        y: 1559
+        width: 420
+        height: 561
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: MingWalkDown2
+      rect:
+        serializedVersion: 2
+        x: 1131
+        y: 1556
+        width: 426
+        height: 537
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: MingWalkDown3
+      rect:
+        serializedVersion: 2
+        x: 1671
+        y: 1559
+        width: 425
+        height: 563
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: MingWalkDown4
+      rect:
+        serializedVersion: 2
+        x: 2215
+        y: 1566
+        width: 416
+        height: 574
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: MingWalkDown5
+      rect:
+        serializedVersion: 2
+        x: 2750
+        y: 1558
+        width: 417
+        height: 560
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: MingWalkDown6
+      rect:
+        serializedVersion: 2
+        x: 3291
+        y: 1553
+        width: 421
+        height: 544
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: MingWalkDown7
+      rect:
+        serializedVersion: 2
+        x: 3816
+        y: 1559
+        width: 408
+        height: 550
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: MingWalkSide0
+      rect:
+        serializedVersion: 2
+        x: 108
+        y: 831
+        width: 345
+        height: 548
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: MingWalkSide1
+      rect:
+        serializedVersion: 2
+        x: 655
+        y: 815
+        width: 338
+        height: 569
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: MingWalkSide2
+      rect:
+        serializedVersion: 2
+        x: 1198
+        y: 818
+        width: 334
+        height: 545
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: MingWalkSide3
+      rect:
+        serializedVersion: 2
+        x: 1726
+        y: 817
+        width: 338
+        height: 550
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: MingWalkSide4
+      rect:
+        serializedVersion: 2
+        x: 2260
+        y: 829
+        width: 337
+        height: 553
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: MingWalkSide5
+      rect:
+        serializedVersion: 2
+        x: 2802
+        y: 817
+        width: 342
+        height: 553
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: MingWalkSide6
+      rect:
+        serializedVersion: 2
+        x: 3341
+        y: 818
+        width: 341
+        height: 552
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: MingWalkSide7
+      rect:
+        serializedVersion: 2
+        x: 3861
+        y: 817
+        width: 346
+        height: 559
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
     outline: []
     physicsShape: []
   spritePackingTag: 

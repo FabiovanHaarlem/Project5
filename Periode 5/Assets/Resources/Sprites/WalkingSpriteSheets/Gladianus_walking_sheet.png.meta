@@ -1,13 +1,37 @@
 fileFormatVersion: 2
 guid: e0a0eda6ea384aa46a5bffaefd7321bc
-timeCreated: 1508680460
+timeCreated: 1509298191
 licenseType: Free
 TextureImporter:
-  fileIDToRecycleName: {}
+  fileIDToRecycleName:
+    21300000: GladianusWalkUp0
+    21300002: GladianusWalkUp1
+    21300004: GladianusWalkUp2
+    21300006: GladianusWalkUp3
+    21300008: GladianusWalkUp4
+    21300010: GladianusWalkUp5
+    21300012: GladianusWalkUp6
+    21300014: GladianusWalkUp7
+    21300016: GladianusWalkDown0
+    21300018: GladianusWalkDown1
+    21300020: GladianusWalkDown2
+    21300022: GladianusWalkDown3
+    21300024: GladianusWalkDown4
+    21300026: GladianusWalkDown5
+    21300028: GladianusWalkDown6
+    21300030: GladianusWalkDown7
+    21300032: GladianusWalkSide0
+    21300034: GladianusWalkSide1
+    21300036: GladianusWalkSide2
+    21300038: GladianusWalkSide3
+    21300040: GladianusWalkSide4
+    21300042: GladianusWalkSide5
+    21300044: GladianusWalkSide6
+    21300046: GladianusWalkSide7
   serializedVersion: 4
   mipmaps:
     mipMapMode: 0
-    enableMipMap: 1
+    enableMipMap: 0
     sRGBTexture: 1
     linearTexture: 0
     fadeOut: 0
@@ -33,13 +57,13 @@ TextureImporter:
     filterMode: -1
     aniso: -1
     mipBias: -1
-    wrapU: -1
+    wrapU: 1
     wrapV: -1
     wrapW: -1
-  nPOTScale: 1
+  nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 0
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -47,9 +71,9 @@ TextureImporter:
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spritePixelsToUnits: 100
   alphaUsage: 1
-  alphaIsTransparency: 0
+  alphaIsTransparency: 1
   spriteTessellationDetail: -1
-  textureType: 0
+  textureType: 8
   textureShape: 1
   maxTextureSizeSet: 0
   compressionQualitySet: 0
@@ -63,9 +87,377 @@ TextureImporter:
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
+  - buildTarget: Standalone
+    maxTextureSize: 2048
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+  - buildTarget: Android
+    maxTextureSize: 2048
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+  - buildTarget: Windows Store Apps
+    maxTextureSize: 2048
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+  - buildTarget: WebGL
+    maxTextureSize: 2048
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: GladianusWalkUp0
+      rect:
+        serializedVersion: 2
+        x: 69
+        y: 2291
+        width: 400
+        height: 650
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: GladianusWalkUp1
+      rect:
+        serializedVersion: 2
+        x: 608
+        y: 2293
+        width: 400
+        height: 650
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: GladianusWalkUp2
+      rect:
+        serializedVersion: 2
+        x: 1147
+        y: 2291
+        width: 400
+        height: 650
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: GladianusWalkUp3
+      rect:
+        serializedVersion: 2
+        x: 1686
+        y: 2291
+        width: 400
+        height: 650
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: GladianusWalkUp4
+      rect:
+        serializedVersion: 2
+        x: 2225
+        y: 2291
+        width: 400
+        height: 650
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: GladianusWalkUp5
+      rect:
+        serializedVersion: 2
+        x: 2764
+        y: 2291
+        width: 400
+        height: 650
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: GladianusWalkUp6
+      rect:
+        serializedVersion: 2
+        x: 3303
+        y: 2291
+        width: 400
+        height: 650
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: GladianusWalkUp7
+      rect:
+        serializedVersion: 2
+        x: 3834
+        y: 2291
+        width: 400
+        height: 650
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: GladianusWalkDown0
+      rect:
+        serializedVersion: 2
+        x: 69
+        y: 1555
+        width: 400
+        height: 650
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: GladianusWalkDown1
+      rect:
+        serializedVersion: 2
+        x: 610
+        y: 1562
+        width: 400
+        height: 650
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: GladianusWalkDown2
+      rect:
+        serializedVersion: 2
+        x: 1147
+        y: 1557
+        width: 400
+        height: 650
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: GladianusWalkDown3
+      rect:
+        serializedVersion: 2
+        x: 1684
+        y: 1566
+        width: 400
+        height: 650
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: GladianusWalkDown4
+      rect:
+        serializedVersion: 2
+        x: 2227
+        y: 1555
+        width: 400
+        height: 650
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: GladianusWalkDown5
+      rect:
+        serializedVersion: 2
+        x: 2753
+        y: 1566
+        width: 400
+        height: 650
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: GladianusWalkDown6
+      rect:
+        serializedVersion: 2
+        x: 3278
+        y: 1553
+        width: 400
+        height: 650
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: GladianusWalkDown7
+      rect:
+        serializedVersion: 2
+        x: 3810
+        y: 1557
+        width: 400
+        height: 650
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: GladianusWalkSide0
+      rect:
+        serializedVersion: 2
+        x: 65
+        y: 824
+        width: 400
+        height: 650
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: GladianusWalkSide1
+      rect:
+        serializedVersion: 2
+        x: 608
+        y: 818
+        width: 400
+        height: 650
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: GladianusWalkSide2
+      rect:
+        serializedVersion: 2
+        x: 1145
+        y: 821
+        width: 400
+        height: 650
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: GladianusWalkSide3
+      rect:
+        serializedVersion: 2
+        x: 1686
+        y: 819
+        width: 400
+        height: 650
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: GladianusWalkSide4
+      rect:
+        serializedVersion: 2
+        x: 2222
+        y: 824
+        width: 400
+        height: 650
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: GladianusWalkSide5
+      rect:
+        serializedVersion: 2
+        x: 2764
+        y: 824
+        width: 400
+        height: 650
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: GladianusWalkSide6
+      rect:
+        serializedVersion: 2
+        x: 3304
+        y: 818
+        width: 400
+        height: 650
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: GladianusWalkSide7
+      rect:
+        serializedVersion: 2
+        x: 3844
+        y: 815
+        width: 400
+        height: 650
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
     outline: []
     physicsShape: []
   spritePackingTag: 

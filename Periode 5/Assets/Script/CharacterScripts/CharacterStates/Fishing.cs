@@ -12,6 +12,9 @@ public class Fishing : ICharacterStates
     private List<IFish> m_CaughtFish;
     public Action<IFish> m_Catched;
 
+    private Animator m_Animator;
+    private Transform m_Transform;
+
     private GameObject m_SelectedFishSprite;
     private CharacterControl m_CharacterControl;
 
@@ -21,7 +24,7 @@ public class Fishing : ICharacterStates
     private bool m_Catching;
 
 
-    public Fishing(CharacterControl characterController, GameObject selectedSprite)
+    public Fishing(CharacterControl characterController, GameObject selectedSprite, Animator animator, Transform transform)
     {
         m_Inputs = new string[6];
         m_CharacterControl = characterController;
@@ -29,6 +32,8 @@ public class Fishing : ICharacterStates
         m_CaughtFish = new List<IFish>();
         m_SelectedFishSprite = selectedSprite;
         m_Catching = false;
+        m_Animator = animator;
+        m_Transform = transform;
     }
 
     public void UpdateControls(string[] inputs)

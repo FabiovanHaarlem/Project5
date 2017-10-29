@@ -22,6 +22,8 @@ public class CharacterControl : PoolObject
 
     private ICharacterStates m_CurrentState;
 
+    private Animator m_Animator;
+
     [SerializeField]
     private float m_HorMoveSpeed;
     [SerializeField]
@@ -45,11 +47,19 @@ public class CharacterControl : PoolObject
         m_Inputs[3] = switchFishRightButton;
         m_Inputs[4] = horizontalAxis;
         m_Inputs[5] = verticalAxis;
+        
 
 
         m_WalkingState.UpdateControls(m_Inputs);
         m_FishingState.UpdateControls(m_Inputs);
         m_CarryingFishState.UpdateControls(m_Inputs);
+    }
+
+    public void SetAnimator(RuntimeAnimatorController animator, Sprite dobberSprite)
+    {
+
+        m_Animator.runtimeAnimatorController = animator;
+        m_SelectedSprite.GetComponent<SpriteRenderer>().sprite = dobberSprite;
     }
 
     public void GetSelectedPlayerSprites()
@@ -57,41 +67,43 @@ public class CharacterControl : PoolObject
         //Hier moeten alle sprites en animaties worden doorgegeven die deze speler moet gebruiken
     }
 
-    private void Start()
-    {
-        if (m_Inputs == null)
-        {
-            m_Inputs = new string[6];
-        }
+    //private void Start()
+    //{
+    //    if (m_Inputs == null)
+    //    {
+    //        m_Inputs = new string[6];
+    //    }
 
-        if (m_Inputs[0] == null)
-        {
-            m_Inputs[0] = "Controller1AButton";
-            m_Inputs[1] = "Controller1XButton";
-            m_Inputs[2] = "Controller1LeftBumper";
-            m_Inputs[3] = "Controller1RightBumper";
-            m_Inputs[4] = "Controller1JoystickHorizontal";
-            m_Inputs[5] = "Controller1JoystickVertical";
-        }
+    //    if (m_Inputs[0] == null)
+    //    {
+    //        m_Inputs[0] = "Controller1AButton";
+    //        m_Inputs[1] = "Controller1XButton";
+    //        m_Inputs[2] = "Controller1LeftBumper";
+    //        m_Inputs[3] = "Controller1RightBumper";
+    //        m_Inputs[4] = "Controller1JoystickHorizontal";
+    //        m_Inputs[5] = "Controller1JoystickVertical";
+    //    }
 
-        m_WalkingState = new Walking(this, ref m_HorMoveSpeed, ref m_VerMoveSpeed);
-        m_FishingState = new Fishing(this, m_SelectedSprite);
-        m_CarryingFishState = new CarryingFish(this, ref m_HorMoveSpeed, ref m_VerMoveSpeed);
-        m_CurrentState = m_WalkingState;
+    //    m_WalkingState = new Walking(this, ref m_HorMoveSpeed, ref m_VerMoveSpeed);
+    //    m_FishingState = new Fishing(this, m_SelectedSprite);
+    //    m_CarryingFishState = new CarryingFish(this, ref m_HorMoveSpeed, ref m_VerMoveSpeed);
+    //    m_CurrentState = m_WalkingState;
 
-        m_WalkingState.UpdateControls(m_Inputs);
-        m_FishingState.UpdateControls(m_Inputs);
-        m_CarryingFishState.UpdateControls(m_Inputs);
-    }
+    //    m_WalkingState.UpdateControls(m_Inputs);
+    //    m_FishingState.UpdateControls(m_Inputs);
+    //    m_CarryingFishState.UpdateControls(m_Inputs);
+    //}
 
     internal override void Initialize(PoolObjectInfo Info)
     {
         SetMoveSpeed();
         m_Inputs = new string[6];
 
-        m_WalkingState = new Walking(this, ref m_HorMoveSpeed, ref m_VerMoveSpeed);
-        m_FishingState = new Fishing(this, m_SelectedSprite);
-        m_CarryingFishState = new CarryingFish(this, ref m_HorMoveSpeed, ref m_VerMoveSpeed);
+        m_Animator = GetComponent<Animator>();
+        Transform transform = GetComponent<Transform>();
+        m_WalkingState = new Walking(this, ref m_HorMoveSpeed, ref m_VerMoveSpeed, m_Animator, transform);
+        m_FishingState = new Fishing(this, m_SelectedSprite, m_Animator, transform);
+        m_CarryingFishState = new CarryingFish(this, ref m_HorMoveSpeed, ref m_VerMoveSpeed, m_Animator, transform);
         m_CurrentState = m_WalkingState;
 
         m_Rigidbody = GetComponent<Rigidbody>();
