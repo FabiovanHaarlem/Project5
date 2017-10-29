@@ -157,7 +157,7 @@ namespace Game
             stats.UpdateID((byte)M_Players.Count, score, m_WinRequiredScore, m_ScoreBoards[M_Players.Count - 1]);
 
             //update playerID in the character controller
-            Player.SetPlayerID = (byte)M_Players.Count;
+            Player.PlayerID = (byte)M_Players.Count;
         }
 
         public void RegisterWorldEvent(ScriptableWorldEvent NewEvent)
@@ -177,7 +177,7 @@ namespace Game
         {
             Debug.Log("test");
             PoolObject screen = Pool.Singleton.Spawn(m_WinScreen, m_UI);
-            screen.GetComponent<WinScherm>().Text = "Player " + player.M_PlayerController.name;
+            screen.GetComponent<WinScherm>().Text = "Player " + player.M_PlayerController.PlayerID;
         }
 
         protected void Update()
