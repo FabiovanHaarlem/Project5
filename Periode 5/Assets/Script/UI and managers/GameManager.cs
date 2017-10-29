@@ -51,8 +51,10 @@ namespace Game
         [SerializeField]
         internal int SpawnLimit = 25;
 
-        [SerializeField]
-        public int m_WinRequiredScore;
+        [SerializeField][Tooltip("score that will be required to win")]
+        private int m_WinRequiredScore;
+        [SerializeField][Tooltip("Object to spawn when a player wins")]
+        private GameObject m_WinScreen;
 
         private List<WorldEvent> m_ActiveWorldEvents;
     
@@ -82,10 +84,19 @@ namespace Game
             m_ActiveWorldEvents = new List<WorldEvent>();
         }
 
+        private void Start()
+        {
+            Pool.Singleton.LoadExtraItems(
+                new Poolobj()
+                {
+                    m_Amount = 1,
+                    m_Prefab = m_WinScreen
+                });
+        }
+
         //function to call when creating a new player
         public void RegisterPlayer(CharacterControl Player)
         {
-            Debug.Log("Call");
 
             //making a new score system for the player
             m_Scores.Add(new PlayerScore(Player));
@@ -150,6 +161,13 @@ namespace Game
             m_ActiveWorldEvents.Remove(EndEvent);
         }
 
+        private void EndGame(PlayerScore player)
+        {
+            Debug.Log("test");
+            PoolObject screen = Pool.Singleton.Spawn(m_WinScreen, m_UI);
+            screen.GetComponent<WinScherm>().Text = "Player " + player.M_PlayerController.name;
+        }
+
         protected void Update()
         {
 
@@ -157,6 +175,15 @@ namespace Game
             {
                 m_ActiveWorldEvents[i].Update();
             }
+
+            for (int i = 0; i < m_Scores.Count; i++)
+            {
+                if (m_Scores[i].Score >= m_WinRequiredScore)
+                    EndGame(m_Scores[i]);
+            }
+
+            if (Input.GetKeyDown(KeyCode.Space))
+                EndGame(m_Scores[0]);
         }
 
     }
