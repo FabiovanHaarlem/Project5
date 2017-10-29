@@ -35,7 +35,18 @@ public class CharacterControl : PoolObject
     public Action<PowerUp> M_AddPowerup { get; set; }
 
     private byte m_PlayerID;
-    public byte SetPlayerID { set { m_PlayerID = value; } }
+    internal byte PlayerID
+    {
+        get
+        {
+            return m_PlayerID;
+        }
+
+        set
+        {
+            m_PlayerID = value;
+        }
+    }
 
 
     public void ModifyControls(string toFishingButton, string attackButton, string switchFishLeftButton, string switchFishRightButton, string horizontalAxis, string verticalAxis)
