@@ -81,7 +81,7 @@ Animator:
   m_GameObject: {fileID: 1797019875920410}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 3105506a2d6e7a4469932357471e3589, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -100,10 +100,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 636b01eb524d77d44b53fef18a029afc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_SelectedSprite: {fileID: 1020127421181930, guid: 9025bc5b81e37a341a28549516dfc56a,
-    type: 2}
-  m_FishingLine: {fileID: 120376859983665312, guid: 6228a1c883405d54c91d7965882f91d8,
-    type: 2}
+  m_SelectedSprite: {fileID: 0}
+  m_FishingLine: {fileID: 0}
   m_HorMoveSpeed: 5
   m_VerMoveSpeed: 5
 --- !u!208 &208164758918578834

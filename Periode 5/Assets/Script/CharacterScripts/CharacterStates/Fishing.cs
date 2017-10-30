@@ -22,9 +22,10 @@ public class Fishing : ICharacterStates
     private int m_SelectedFishIndex;
     private float m_CatchMeter;
     private bool m_Catching;
+    private int m_AnimatorLayer;
 
 
-    public Fishing(CharacterControl characterController, GameObject selectedSprite, Animator animator, Transform transform)
+    public Fishing(CharacterControl characterController, GameObject selectedSprite, int layer, Transform transform, Animator animator)
     {
         m_Inputs = new string[6];
         m_CharacterControl = characterController;
@@ -32,8 +33,9 @@ public class Fishing : ICharacterStates
         m_CaughtFish = new List<IFish>();
         m_SelectedFishSprite = selectedSprite;
         m_Catching = false;
-        m_Animator = animator;
+        m_AnimatorLayer = layer;
         m_Transform = transform;
+        m_Animator = animator;
     }
 
     public void UpdateControls(string[] inputs)
