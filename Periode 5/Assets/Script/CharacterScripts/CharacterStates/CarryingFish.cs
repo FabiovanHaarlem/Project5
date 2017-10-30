@@ -112,8 +112,8 @@ public class CarryingFish : ICharacterStates
         foreach (IFish i in m_CaughtFish)
         {
             m_CharacterControl.M_Catched.Invoke(i);
-            Debug.Log("Yeahhh");
         }
+        m_CharacterControl.SwitchToWalkingState();
     }
 
     public void ToWalking()
