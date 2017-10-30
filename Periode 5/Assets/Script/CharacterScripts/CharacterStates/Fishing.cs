@@ -59,13 +59,13 @@ public class Fishing : ICharacterStates
         Debug.Log("Fishing State");
         SwitchSelectedFish();
 
+        if (m_CurrentSelectedFish != null)
         m_CharacterControl.ShowCurrentSelectedfish(m_CurrentSelectedFish.GetGameObject);
 
         if (m_CurrentSelectedFish != null)
         {
             if (Input.GetButtonDown(m_Inputs[1]) && (m_Catching))
             {
-                Debug.Log("Catching Fish");
 
                 m_CharacterControl.UpdateFishingLine(m_CurrentSelectedFish.GetGameObject);
                 m_CatchMeter += 20;
@@ -74,7 +74,6 @@ public class Fishing : ICharacterStates
 
                 if (m_CatchMeter >= 100)
                 {
-                    Debug.Log("Cought it");
                     CatchFish();
                 }
             }
@@ -148,7 +147,8 @@ public class Fishing : ICharacterStates
             m_CatchMeter = 0;
         }
 
-        m_CurrentSelectedFish = m_FishInArea[m_SelectedFishIndex];
+        if(m_FishInArea.Count >= 1)
+            m_CurrentSelectedFish = m_FishInArea[m_SelectedFishIndex];
     }
 
     private void CatchFish()
@@ -190,6 +190,7 @@ public class Fishing : ICharacterStates
         if (collider.gameObject.layer == 8)
         {
             GetAllFishInArea();
+            m_CharacterControl.DeactivateFishingLine();
         }
     }
 
@@ -203,7 +204,10 @@ public class Fishing : ICharacterStates
 
     public void SetCurrentSelecetedFish()
     {
-        m_CurrentSelectedFish = m_FishInArea[0];
+        if (m_FishInArea.Count >= 1)
+        {
+            m_CurrentSelectedFish = m_FishInArea[0];
+        }
     }
 
     private void GetAllFishInArea()

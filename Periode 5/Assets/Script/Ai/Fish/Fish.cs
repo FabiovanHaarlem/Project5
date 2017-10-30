@@ -43,7 +43,7 @@ namespace Game.Character.Ai
         {
             transform.LookAt(Camera.main.transform);
 
-            if(CheckDistancePlayer())
+            if(CheckDistancePlayer() && m_State != (byte)State.beingcatched)
             {
                 byte retry = 0;
                 while(Vector3.Distance(m_Agent.destination, transform.position) < 3 && retry < 5)
