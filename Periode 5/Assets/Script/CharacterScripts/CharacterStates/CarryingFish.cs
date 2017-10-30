@@ -16,18 +16,20 @@ public class CarryingFish : ICharacterStates
     private float m_HorMoveSpeed;
     private float m_VerMoveSpeed;
     private float m_PlayerScale;
+    private int m_AnimatorLayer;
 
 
-    public CarryingFish(CharacterControl characterController, ref float horMoveSpeed, ref float verMoveSpeed, Animator animator, Transform transform)
+    public CarryingFish(CharacterControl characterController, ref float horMoveSpeed, ref float verMoveSpeed, int layer, Transform transform, Animator animator)
     {
         m_Inputs = new string[6];
         m_CaughtFish = new List<IFish>();
         m_CharacterControl = characterController;
         m_HorMoveSpeed = horMoveSpeed;
         m_VerMoveSpeed = verMoveSpeed;
-        m_Animator= animator;
+        m_AnimatorLayer = layer;
         m_Transform = transform;
         m_PlayerScale = m_Transform.localScale.x;
+        m_Animator = animator;
     }
 
     public void UpdateControls(string[] inputs)
@@ -69,27 +71,33 @@ public class CarryingFish : ICharacterStates
 
         if (-Input.GetAxis(m_Inputs[4]) < -0.2f)
         {
-            m_Animator.SetInteger("State", 3);
+            //m_Animator.SetInteger("State", 3);
+            m_Animator.Play(3, m_AnimatorLayer);
             m_Transform.localScale = new Vector3(-m_PlayerScale, m_Transform.localScale.y, m_Transform.localScale.z);
         }
         else if (-Input.GetAxis(m_Inputs[4]) > 0.2f)
         {
-            m_Animator.SetInteger("State", 4);
+            m_Animator.Play(4, m_AnimatorLayer);
+            //m_Animator.SetInteger("State", 4);
             m_Transform.localScale = new Vector3(m_PlayerScale, m_Transform.localScale.y, m_Transform.localScale.z);
         }
-        else if (Input.GetAxis(m_Inputs[5]) < -0.2f)
+
+        if (Input.GetAxis(m_Inputs[5]) < -0.2f)
         {
-            m_Animator.SetInteger("State", 1);
+            m_Animator.Play(1, m_AnimatorLayer);
+            //m_Animator.SetInteger("State", 1);
             m_Transform.localScale = new Vector3(m_PlayerScale, m_Transform.localScale.y, m_Transform.localScale.z);
         }
         else if (Input.GetAxis(m_Inputs[5]) > 0.2f)
         {
-            m_Animator.SetInteger("State", 2);
+            m_Animator.Play(2, m_AnimatorLayer);
+            //m_Animator.SetInteger("State", 2);
             m_Transform.localScale = new Vector3(m_PlayerScale, m_Transform.localScale.y, m_Transform.localScale.z);
         }
         else
         {
-            m_Animator.SetInteger("State", 0);
+            m_Animator.Play(5, m_AnimatorLayer);
+            //m_Animator.SetInteger("State", 5);
             m_Transform.localScale = new Vector3(m_PlayerScale, m_Transform.localScale.y, m_Transform.localScale.z);
         }
     }

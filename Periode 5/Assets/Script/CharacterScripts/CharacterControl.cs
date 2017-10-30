@@ -34,6 +34,8 @@ public class CharacterControl : PoolObject
     public Action<IFish> M_Catched { get; set; }
     public Action<PowerUp> M_AddPowerup { get; set; }
 
+    private int m_AnimatorLayer;
+
     private byte m_PlayerID;
     internal byte PlayerID
     {
@@ -66,10 +68,11 @@ public class CharacterControl : PoolObject
         m_CarryingFishState.UpdateControls(m_Inputs);
     }
 
-    public void SetAnimator(RuntimeAnimatorController animator, Sprite dobberSprite)
+    public void SetAnimator(int layer, Sprite dobberSprite)
     {
-
-        m_Animator.runtimeAnimatorController = animator;
+        m_Animator = GetComponent<Animator>();
+        m_AnimatorLayer = layer;
+        //m_Animator.runtimeAnimatorController = animator;
         m_SelectedSprite.GetComponent<SpriteRenderer>().sprite = dobberSprite;
     }
 
@@ -112,9 +115,9 @@ public class CharacterControl : PoolObject
 
         m_Animator = GetComponent<Animator>();
         Transform transform = GetComponent<Transform>();
-        m_WalkingState = new Walking(this, ref m_HorMoveSpeed, ref m_VerMoveSpeed, m_Animator, transform);
-        m_FishingState = new Fishing(this, m_SelectedSprite, m_Animator, transform);
-        m_CarryingFishState = new CarryingFish(this, ref m_HorMoveSpeed, ref m_VerMoveSpeed, m_Animator, transform);
+        m_WalkingState = new Walking(this, ref m_HorMoveSpeed, ref m_VerMoveSpeed, m_AnimatorLayer, transform, m_Animator);
+        m_FishingState = new Fishing(this, m_SelectedSprite, m_AnimatorLayer, transform, m_Animator);
+        m_CarryingFishState = new CarryingFish(this, ref m_HorMoveSpeed, ref m_VerMoveSpeed, m_AnimatorLayer, transform, m_Animator);
         m_CurrentState = m_WalkingState;
 
         m_Rigidbody = GetComponent<Rigidbody>();
