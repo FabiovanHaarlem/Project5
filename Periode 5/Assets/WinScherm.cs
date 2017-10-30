@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 namespace Game.UI
 {
@@ -13,6 +14,12 @@ namespace Game.UI
             {
                 m_PlayerWin.text = value;
             }
+        }
+
+
+        public void ReturnToMenu()
+        {
+            SceneManager.LoadScene(SceneManager.GetSceneByName("Menu Test").buildIndex);
         }
     }
 }

@@ -7,6 +7,7 @@ using Game.Character.Pickup;
 using Game.Scriptable;
 using Game.Event;
 using UnityEditor;
+using UnityEngine.SceneManagement;
 
 namespace Game
 {
@@ -118,37 +119,37 @@ namespace Game
                 case 1:
                     playerstatstransform.localPosition = new Vector3(6, -2, 0);
                     Player.ModifyControls("Controller1AButton", "Controller1XButton", "Controller1LeftBumper", "Controller1RightBumper", "Controller1JoystickHorizontal", "Controller1JoystickVertical");
-                    //RuntimeAnimatorController animator0 = Resources.Load("CharacterAnimations/Flint/FlintAnimator") as RuntimeAnimatorController;
-                    Sprite dobberSprite0 = (Sprite)Resources.Load("Sprites/Dobbers/FlintDobber");
-                    Player.SetAnimator(1, dobberSprite0);
+                    RuntimeAnimatorController animator0 = Resources.Load<RuntimeAnimatorController>("CharacterAnimations/Flint/FlintAnimator");
+                    Sprite dobberSprite0 = Resources.Load<Sprite>("Sprites/Dobbers/FlintDobber");
                     m_ScorePoints[0].GetComponent<ScorePoint>().m_PlayerID = 1;
+                    Player.SetAnimator(dobberSprite0, animator0);
                     break;
 
                 case 2:
                     playerstatstransform.localPosition = new Vector3(-6, -2, 0);
                     Player.ModifyControls("Controller2AButton", "Controller2XButton", "Controller2LeftBumper", "Controller2RightBumper", "Controller2JoystickHorizontal", "Controller2JoystickVertical");
-                    //RuntimeAnimatorController animator1 = Resources.Load("CharacterAnimations/Gladianus/GladianusAnimator") as RuntimeAnimatorController;
-                    Sprite dobberSprite1 = (Sprite)Resources.Load("Sprites/Dobbers/GladianusDobber");
-                    Player.SetAnimator(2, dobberSprite1);
+                    RuntimeAnimatorController animator1 = Resources.Load<RuntimeAnimatorController>("CharacterAnimations/Gladianus/GladianusAnimator");
+                    Sprite dobberSprite1 = Resources.Load<Sprite>("Sprites/Dobbers/GladianusDobber");
                     m_ScorePoints[1].GetComponent<ScorePoint>().m_PlayerID = 2;
+                    Player.SetAnimator(dobberSprite1, animator1);
                     break;
 
                 case 3:
                     playerstatstransform.localPosition = new Vector3(6, 2, 0);
                     Player.ModifyControls("Controller3AButton", "Controller3XButton", "Controller3LeftBumper", "Controller3RightBumper", "Controller3JoystickHorizontal", "Controller3JoystickVertical");
-                    //RuntimeAnimatorController animator2 = Resources.Load("CharacterAnimations/Hermes/HermesAnimator") as RuntimeAnimatorController;
-                    Sprite dobberSprite2 = (Sprite)Resources.Load("Sprites/Dobbers/HermesDobber");
-                    Player.SetAnimator(3, dobberSprite2);
+                    RuntimeAnimatorController animator2 = Resources.Load<RuntimeAnimatorController>("CharacterAnimations/Hermes/HermesAnimator");
+                    Sprite dobberSprite2 = Resources.Load<Sprite>("Sprites/Dobbers/HermesDobber");
                     m_ScorePoints[2].GetComponent<ScorePoint>().m_PlayerID = 3;
+                    Player.SetAnimator(dobberSprite2, animator2);
                     break;
 
                 case 4:
                     playerstatstransform.localPosition = new Vector3(-6, 2, 0);
                     Player.ModifyControls("Controller4AButton", "Controller4XButton", "Controller4LeftBumper", "Controller4RightBumper", "Controller4JoystickHorizontal", "Controller4JoystickVertical");
-                    //RuntimeAnimatorController animator3 = Resources.Load("CharacterAnimations/Ming/MingAnimator") as RuntimeAnimatorController;
-                    Sprite dobberSprite3 = (Sprite)Resources.Load("Sprites/Dobbers/MingDobber");
-                    Player.SetAnimator(4, dobberSprite3);
+                    RuntimeAnimatorController animator3 = Resources.Load<RuntimeAnimatorController>("CharacterAnimations/Ming/MingAnimator");
+                    Sprite dobberSprite3 = Resources.Load<Sprite>("Sprites/Dobbers/MingDobber");
                     m_ScorePoints[3].GetComponent<ScorePoint>().m_PlayerID = 4;
+                    Player.SetAnimator(dobberSprite3, animator3);
                     break;
             }
 
@@ -175,7 +176,6 @@ namespace Game
 
         private void EndGame(PlayerScore player)
         {
-            Debug.Log("test");
             PoolObject screen = Pool.Singleton.Spawn(m_WinScreen, m_UI);
             screen.GetComponent<WinScherm>().Text = "Player " + player.M_PlayerController.PlayerID;
         }
@@ -194,8 +194,8 @@ namespace Game
                     EndGame(m_Scores[i]);
             }
 
-            if (Input.GetKeyDown(KeyCode.Space))
-                EndGame(m_Scores[0]);
+            if (Input.GetKeyDown(KeyCode.R))
+                SceneManager.LoadScene(SceneManager.GetSceneByName("Menu Test").buildIndex);
         }
 
     }

@@ -68,11 +68,11 @@ public class CharacterControl : PoolObject
         m_CarryingFishState.UpdateControls(m_Inputs);
     }
 
-    public void SetAnimator(int layer, Sprite dobberSprite)
+    public void SetAnimator(Sprite dobberSprite, RuntimeAnimatorController animator)
     {
         m_Animator = GetComponent<Animator>();
-        m_AnimatorLayer = layer;
-        //m_Animator.runtimeAnimatorController = animator;
+        m_AnimatorLayer = PlayerID;
+        m_Animator.runtimeAnimatorController = animator;
         m_SelectedSprite.GetComponent<SpriteRenderer>().sprite = dobberSprite;
     }
 
@@ -122,14 +122,15 @@ public class CharacterControl : PoolObject
 
         m_Rigidbody = GetComponent<Rigidbody>();
 
-        m_SelectedSprite = Pool.Singleton.Spawn(m_SelectedSprite).gameObject;
+        m_SelectedSprite = Pool.Singleton.LoadExtraItems(new Poolobj() { m_Amount = 1, m_Prefab = m_SelectedSprite })[0].gameObject;
         GameObject fishingLine = Pool.Singleton.Spawn(m_FishingLine.gameObject).gameObject;
         m_FishingLine = fishingLine.GetComponent<LineRenderer>();
 
         m_SelectedSprite.SetActive(false);
         m_FishingLine.gameObject.SetActive(false);
         
-        GameManager.Singelton.RegisterPlayer(this);
+        GameManager.Singelton.Register
+            er(this);
         base.Initialize(Info);
     }
 

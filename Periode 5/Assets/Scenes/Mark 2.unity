@@ -429,15 +429,10 @@ Prefab:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
-    - target: {fileID: 224455822314724860, guid: 28496a06d2b936b4c98610916e5a1242,
+    - target: {fileID: 224323597336157512, guid: 28496a06d2b936b4c98610916e5a1242,
         type: 2}
       propertyPath: m_LocalPosition.y
-      value: 30.799988
-      objectReference: {fileID: 0}
-    - target: {fileID: 224455822314724860, guid: 28496a06d2b936b4c98610916e5a1242,
-        type: 2}
-      propertyPath: m_SizeDelta.y
-      value: 1200
+      value: -495
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 28496a06d2b936b4c98610916e5a1242, type: 2}
@@ -1293,8 +1288,8 @@ RectTransform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2119870212}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 436.5, y: 245.5, z: 0}
-  m_LocalScale: {x: 0.45465857, y: 0.45465857, z: 0.45465857}
+  m_LocalPosition: {x: 479.5, y: 269.5, z: 0}
+  m_LocalScale: {x: 0.4992766, y: 0.4992766, z: 0.4992766}
   m_Children:
   - {fileID: 540652617}
   - {fileID: 486415157}
