@@ -129,8 +129,7 @@ public class CharacterControl : PoolObject
         m_SelectedSprite.SetActive(false);
         m_FishingLine.gameObject.SetActive(false);
         
-        GameManager.Singelton.Register
-            er(this);
+        GameManager.Singelton.RegisterPlayer(this);
         base.Initialize(Info);
     }
 
