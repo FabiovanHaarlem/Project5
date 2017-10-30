@@ -24,7 +24,7 @@ AnimationClip:
         outSlope: {x: 0, y: 0, z: 0}
         tangentMode: 0
       - serializedVersion: 2
-        time: 0.33333334
+        time: 0.2
         value: {x: -433.3363, y: -170.66727, z: -109.2116}
         inSlope: {x: 0, y: 13.330933, z: -23.153595}
         outSlope: {x: 0, y: 13.330933, z: -23.153595}
@@ -49,7 +49,7 @@ AnimationClip:
         outSlope: {x: 0, y: 0, z: 0}
         tangentMode: 0
       - serializedVersion: 2
-        time: 0.33333334
+        time: 0.2
         value: {x: -330.89154, y: -158.33273, z: -89}
         inSlope: {x: 0, y: -13.330933, z: 28}
         outSlope: {x: 0, y: -13.330933, z: 28}
@@ -236,7 +236,7 @@ AnimationClip:
         outSlope: 0
         tangentMode: 136
       - serializedVersion: 2
-        time: 0.33333334
+        time: 0.2
         value: -433.3363
         inSlope: 0
         outSlope: 0
@@ -264,7 +264,7 @@ AnimationClip:
         outSlope: 0
         tangentMode: 136
       - serializedVersion: 2
-        time: 0.33333334
+        time: 0.2
         value: -170.66727
         inSlope: 13.330933
         outSlope: 13.330933
@@ -292,7 +292,7 @@ AnimationClip:
         outSlope: 0
         tangentMode: 136
       - serializedVersion: 2
-        time: 0.33333334
+        time: 0.2
         value: -109.2116
         inSlope: -23.153595
         outSlope: -23.153595
@@ -320,7 +320,7 @@ AnimationClip:
         outSlope: 0
         tangentMode: 136
       - serializedVersion: 2
-        time: 0.33333334
+        time: 0.2
         value: -330.89154
         inSlope: 0
         outSlope: 0
@@ -348,7 +348,7 @@ AnimationClip:
         outSlope: 0
         tangentMode: 136
       - serializedVersion: 2
-        time: 0.33333334
+        time: 0.2
         value: -158.33273
         inSlope: -13.330933
         outSlope: -13.330933
@@ -376,7 +376,7 @@ AnimationClip:
         outSlope: 0
         tangentMode: 136
       - serializedVersion: 2
-        time: 0.33333334
+        time: 0.2
         value: -89
         inSlope: 28
         outSlope: 28
