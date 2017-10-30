@@ -38,7 +38,6 @@ public class Walking : ICharacterStates
 
     public void UpdateState()
     {
-        Debug.Log("Walking State");
         if (Input.GetButtonDown(m_Inputs[0]))
         {
             ToFishing();
