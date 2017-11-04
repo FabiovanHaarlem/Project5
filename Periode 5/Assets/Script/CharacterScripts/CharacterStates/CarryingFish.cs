@@ -2,6 +2,7 @@
 using UnityEngine;
 using Game.Character.Ai;
 using Game.Event;
+using Sjabloon;
 
 public class CarryingFish : ICharacterStates
 {
@@ -67,28 +68,28 @@ public class CarryingFish : ICharacterStates
             ToWalking();
         }
 
-        m_CharacterControl.gameObject.transform.position += new Vector3(-Input.GetAxis(m_Inputs[4]), 0, Input.GetAxis(m_Inputs[5])) * Time.deltaTime;
+        m_CharacterControl.gameObject.transform.position += new Vector3(-InputManager.Instance.GetAxis(m_Inputs[4]), 0, InputManager.Instance.GetAxis(m_Inputs[5])) * Time.deltaTime;
 
-        if (-Input.GetAxis(m_Inputs[4]) < -0.2f)
+        if (-InputManager.Instance.GetAxis(m_Inputs[4]) < -0.2f)
         {
             m_Animator.SetInteger("State", 3);
             //m_Animator.Play("WalkLeft", m_AnimatorLayer);
             m_Transform.localScale = new Vector3(-m_PlayerScale, m_Transform.localScale.y, m_Transform.localScale.z);
         }
-        else if (-Input.GetAxis(m_Inputs[4]) > 0.2f)
+        else if (-InputManager.Instance.GetAxis(m_Inputs[4]) > 0.2f)
         {
             //m_Animator.Play("WalkRigh", m_AnimatorLayer);
             m_Animator.SetInteger("State", 4);
             m_Transform.localScale = new Vector3(m_PlayerScale, m_Transform.localScale.y, m_Transform.localScale.z);
         }
 
-        if (Input.GetAxis(m_Inputs[5]) < -0.2f)
+        if (InputManager.Instance.GetAxis(m_Inputs[5]) < -0.2f)
         {
             //m_Animator.Play("WalkUp", m_AnimatorLayer);
             m_Animator.SetInteger("State", 1);
             m_Transform.localScale = new Vector3(m_PlayerScale, m_Transform.localScale.y, m_Transform.localScale.z);
         }
-        else if (Input.GetAxis(m_Inputs[5]) > 0.2f)
+        else if (InputManager.Instance.GetAxis(m_Inputs[5]) > 0.2f)
         {
             //m_Animator.Play("WalkDown", m_AnimatorLayer);
             m_Animator.SetInteger("State", 2);
