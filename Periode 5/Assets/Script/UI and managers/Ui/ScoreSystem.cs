@@ -60,7 +60,11 @@ namespace Game.UI
                 M_Struct.Score += 1;
 
             if (Random.Range(0, 100) > 90)
+            {
+                GameManager.Singelton.SpinningWheel.gameObject.SetActive(true);
                 GameManager.Singelton.SpinningWheel.Spin();
+            }
+
         }
 
         //this function will check if there is the nessecary amount of the same fish in inventory
