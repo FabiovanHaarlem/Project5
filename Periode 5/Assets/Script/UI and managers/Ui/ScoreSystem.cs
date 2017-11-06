@@ -59,21 +59,8 @@ namespace Game.UI
             if (CheckScore(Actualname, 4))
                 M_Struct.Score += 1;
 
-            //switch (Actualname)
-            //{
-            //    case "Fish-Green":
-            //        m_Struct.Score += 1;
-            //        break;
-            //    case "Fish-Orange":
-            //        m_Struct.Score += 1;
-            //        break;
-            //    case "Fish-Pink":
-            //        m_Struct.Score += 1;
-            //        break;
-            //    case "Fish-Red":
-            //        m_Struct.Score += 1;
-            //        break;
-            //}
+            if (Random.Range(0, 100) > 90)
+                GameManager.Singelton.SpinningWheel.Spin();
         }
 
         //this function will check if there is the nessecary amount of the same fish in inventory

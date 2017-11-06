@@ -222,7 +222,7 @@ namespace Plugins.ObjectPool
                 PoolObject obj = Spawn(prefab);
 
                 if (obj != null)
-                    obj.transform.position = SpawnPosition;
+                    obj.transform.localPosition = SpawnPosition;
 
                 return obj;
             }

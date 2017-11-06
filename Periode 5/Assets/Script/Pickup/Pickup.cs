@@ -11,9 +11,36 @@ namespace Game.Character.Pickup
         [SerializeField]
         private ScriptableObject m_ScriptableObj;
 
+        private Sprite m_Image;
+        public Sprite Image
+        {
+            set
+            {
+                m_Image = value;
+            }
+        }
+
+        private SpriteRenderer m_Renderer;
+
+        public ScriptableObject SetPower
+        {
+            set
+            {
+                m_ScriptableObj = value;
+            }
+        }
+
+
         private void Start()
         {
             GetComponent<Collider>().isTrigger = true;
+            m_Renderer = gameObject.AddComponent<SpriteRenderer>();
+        }
+
+        private void Update()
+        {
+            m_Renderer.sprite = m_Image;
+            transform.LookAt(Camera.main.transform);
         }
 
         private void OnTriggerEnter(Collider other)

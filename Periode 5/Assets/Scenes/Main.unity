@@ -1235,6 +1235,11 @@ Prefab:
       propertyPath: m_ScoreBoards.Array.size
       value: 4
       objectReference: {fileID: 0}
+    - target: {fileID: 114889958758364240, guid: 6c839c10a41c9ac40b93173f962e8f86,
+        type: 2}
+      propertyPath: m_PossiblePowerups.Array.size
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 4756907591568980, guid: 6c839c10a41c9ac40b93173f962e8f86, type: 2}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -1345,9 +1350,72 @@ Prefab:
       propertyPath: m_BackgroundMusic
       value: 
       objectReference: {fileID: 8300000, guid: 2c8ed847a81712d4b99a81e6310beda5, type: 3}
+    - target: {fileID: 114889958758364240, guid: 6c839c10a41c9ac40b93173f962e8f86,
+        type: 2}
+      propertyPath: m_LevelCenter
+      value: 
+      objectReference: {fileID: 586894511}
+    - target: {fileID: 114889958758364240, guid: 6c839c10a41c9ac40b93173f962e8f86,
+        type: 2}
+      propertyPath: m_SpinningWheel
+      value: 
+      objectReference: {fileID: 1594947980294462, guid: 73b46bb487fa86246be753357db40081,
+        type: 2}
+    - target: {fileID: 114889958758364240, guid: 6c839c10a41c9ac40b93173f962e8f86,
+        type: 2}
+      propertyPath: m_Pickup
+      value: 
+      objectReference: {fileID: 1425629580557758, guid: e850a705de3664a4aa46de3f4e2e605e,
+        type: 2}
+    - target: {fileID: 114889958758364240, guid: 6c839c10a41c9ac40b93173f962e8f86,
+        type: 2}
+      propertyPath: m_PossiblePowerups.Array.data[0]
+      value: 
+      objectReference: {fileID: 11400000, guid: 2c4658a849690bc4aa818e9cee71f817,
+        type: 2}
+    - target: {fileID: 114889958758364240, guid: 6c839c10a41c9ac40b93173f962e8f86,
+        type: 2}
+      propertyPath: m_PossiblePowerups.Array.data[1]
+      value: 
+      objectReference: {fileID: 11400000, guid: 8745cb2e839ea9c4580dead2efcf15b5,
+        type: 2}
+    - target: {fileID: 114889958758364240, guid: 6c839c10a41c9ac40b93173f962e8f86,
+        type: 2}
+      propertyPath: m_PossiblePowerups.Array.data[2]
+      value: 
+      objectReference: {fileID: 11400000, guid: a24373258d0d72748a5f89cb6c6b0103,
+        type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 6c839c10a41c9ac40b93173f962e8f86, type: 2}
   m_IsPrefabParent: 0
+--- !u!1 &586894511
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 586894512}
+  m_Layer: 5
+  m_Name: Center
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &586894512
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 586894511}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -3, y: 0, z: -4}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 11
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &718838312
 GameObject:
   m_ObjectHideFlags: 0

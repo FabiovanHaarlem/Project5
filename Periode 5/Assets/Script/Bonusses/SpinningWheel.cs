@@ -60,6 +60,7 @@ namespace Game.Character.Pickup
 
                 //invoking the callbackk function
                 GameManager.Singelton.RegisterWorldEvent(m_Events[index]);
+                Destroy(gameObject, 1f);
             }
             else
             {

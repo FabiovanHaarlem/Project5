@@ -31,7 +31,12 @@ namespace Game
             }
         }
 
-        [SerializeField][Tooltip("Points where people can empty there fishing nets")]
+        [SerializeField][Tooltip("Pickup Prefab")]
+        private GameObject m_Pickup;
+        [SerializeField] [Tooltip("Possible Powerups")]
+        private ScriptablePowerUp[] m_PossiblePowerups;
+
+        [SerializeField] [Tooltip("Points where people can empty there fishing nets")]
         private GameObject[] m_ScorePoints;
         public GameObject[] GetScorePoints
         {
@@ -52,10 +57,11 @@ namespace Game
         [SerializeField]
         internal int SpawnLimit = 25;
 
-        [SerializeField][Tooltip("score that will be required to win")]
+        [SerializeField] [Tooltip("score that will be required to win")]
         private int m_WinRequiredScore;
-        [SerializeField][Tooltip("Object to spawn when a player wins")]
+        [SerializeField] [Tooltip("Object to spawn when a player wins")]
         private GameObject m_WinScreen;
+
 
         [SerializeField]
         [Tooltip("Background music that will play for the duration of the game")]
@@ -63,6 +69,20 @@ namespace Game
         private AudioSource m_AudioSource;
 
         private List<WorldEvent> m_ActiveWorldEvents;
+
+        [SerializeField]
+        private GameObject m_SpinningWheel;
+        private SpinningWheel m_SpinningWheelScript;
+        public SpinningWheel SpinningWheel
+        {
+            get
+            {
+                return m_SpinningWheelScript;
+            }
+        }
+
+        [SerializeField]
+        private GameObject m_LevelCenter;
     
         //a refrence of the game manager to call from other classes
         public static GameManager Singelton { get; private set; }
@@ -103,6 +123,15 @@ namespace Game
                     m_Amount = 1,
                     m_Prefab = m_WinScreen
                 });
+
+            Pool.Singleton.LoadExtraItems(new Poolobj()
+            {
+                m_Amount = 15,
+                m_Prefab = m_Pickup
+            });
+
+            m_SpinningWheel = Pool.Singleton.Spawn(m_SpinningWheel).gameObject;
+            m_SpinningWheelScript = m_SpinningWheel.GetComponent<SpinningWheel>();
         }
 
         //function to call when creating a new player
@@ -171,6 +200,7 @@ namespace Game
             Player.PlayerID = (byte)M_Players.Count;
         }
 
+        //function that will instantiate a new world event into the game
         public void RegisterWorldEvent(ScriptableWorldEvent NewEvent)
         {
             WorldEvent actual = NewEvent.CreateInstance(NewEvent.m_TimeActive, new RemoveWorldEventPoolDelegate(DestroyWorldEvent));
@@ -179,18 +209,20 @@ namespace Game
 
         }
 
+        //function will destroy and remove a world event
         private void DestroyWorldEvent(WorldEvent EndEvent)
         {
             m_ActiveWorldEvents.Remove(EndEvent);
         }
 
+        //function will spawn the winscreen with winner and button to go back to menu
         private void EndGame(PlayerScore player)
         {
             PoolObject screen = Pool.Singleton.Spawn(m_WinScreen, m_UI);
             screen.GetComponent<WinScherm>().Text = "Player " + player.M_PlayerController.PlayerID;
         }
 
-        protected void Update()
+        private void Update()
         {
 
             for (int i = 0; i < m_ActiveWorldEvents.Count; i++)
@@ -202,6 +234,22 @@ namespace Game
             {
                 if (m_Scores[i].Score >= m_WinRequiredScore)
                     EndGame(m_Scores[i]);
+            }
+
+            //spawn powerups at a random interval
+            if(Random.Range(0, 1000) > 999)
+            {
+                Vector3 postion = m_LevelCenter.transform.position + (Random.insideUnitSphere * Random.Range(-9, 9));
+                postion.y = -5;
+
+                GameObject pickupobj = Pool.Singleton.Spawn(m_Pickup, postion).gameObject;
+
+                Pickup pickup = pickupobj.GetComponent<Pickup>();
+
+                ScriptablePowerUp powerup = m_PossiblePowerups[Random.Range(0, Mathf.RoundToInt(m_PossiblePowerups.Length - 1))];
+
+                pickup.SetPower = powerup;
+                pickup.Image = powerup.m_Image;
             }
 
             if (Input.GetKeyDown(KeyCode.R))
