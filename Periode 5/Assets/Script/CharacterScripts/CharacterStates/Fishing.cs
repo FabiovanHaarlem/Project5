@@ -167,6 +167,11 @@ public class Fishing : ICharacterStates
             m_CharacterControl.DeactivateFishingLine();
             m_Catching = false;
             m_CatchMeter = 0;
+
+            if (m_CaughtFish.Count == 3)
+            {
+                ToCarrying();
+            }
         }
     }
 
