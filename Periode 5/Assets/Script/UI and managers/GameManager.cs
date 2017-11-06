@@ -57,6 +57,11 @@ namespace Game
         [SerializeField][Tooltip("Object to spawn when a player wins")]
         private GameObject m_WinScreen;
 
+        [SerializeField]
+        [Tooltip("Background music that will play for the duration of the game")]
+        private AudioClip m_BackgroundMusic;
+        private AudioSource m_AudioSource;
+
         private List<WorldEvent> m_ActiveWorldEvents;
     
         //a refrence of the game manager to call from other classes
@@ -87,6 +92,11 @@ namespace Game
 
         private void Start()
         {
+            m_AudioSource = gameObject.AddComponent<AudioSource>();
+            m_AudioSource.clip = m_BackgroundMusic;
+            m_AudioSource.loop = true;
+            m_AudioSource.Play();
+
             Pool.Singleton.LoadExtraItems(
                 new Poolobj()
                 {
