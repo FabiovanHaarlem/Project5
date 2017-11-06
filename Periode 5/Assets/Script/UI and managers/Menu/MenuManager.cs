@@ -14,8 +14,23 @@ namespace Game.UI
         [SerializeField]
         private string m_Level;
 
+        [SerializeField]
+        private AudioClip m_BackgroundMusic;
+        [SerializeField]
+        private AudioClip m_PaperFlip;
+
+        private AudioSource m_Source;
+        private AudioSource m_Effects;
+
         private void Start()
         {
+            m_Source = gameObject.AddComponent<AudioSource>();  
+            m_Source.clip = m_BackgroundMusic;
+            m_Source.loop = true;
+            m_Source.Play();
+
+            m_Effects = gameObject.AddComponent<AudioSource>();
+
             m_animator = GetComponent<Animator>();
             m_PlayerCount = 2;
         }
@@ -104,6 +119,8 @@ namespace Game.UI
 
             GameManager.Singelton.SpawnLimit = m_FishSpawningLimit;
 
+            m_Source.Stop();
+
             //unload current scene
             SceneManager.UnloadSceneAsync(m_CurrentSceneName);
         }
@@ -119,6 +136,8 @@ namespace Game.UI
         public void Switchscreen(int index)
         {
             m_CurrentMenuScreen = (byte)index;
+            m_Effects.clip = m_PaperFlip;
+            m_Effects.Play();
         }
 
 
