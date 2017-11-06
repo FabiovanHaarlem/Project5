@@ -4,6 +4,7 @@ using UnityEngine;
 using System;
 using Game.Character.Ai;
 using Game.Event;
+using Sjabloon;
 
 public class Fishing : ICharacterStates
 {
@@ -56,7 +57,6 @@ public class Fishing : ICharacterStates
 
     public void UpdateState()
     {
-        Debug.Log("Fishing State");
         SwitchSelectedFish();
 
         if (m_CurrentSelectedFish != null)
@@ -64,7 +64,7 @@ public class Fishing : ICharacterStates
 
         if (m_CurrentSelectedFish != null)
         {
-            if (Input.GetButtonDown(m_Inputs[1]) && (m_Catching))
+            if (InputManager.Instance.GetButton(m_Inputs[1]) && (m_Catching))
             {
 
                 m_CharacterControl.UpdateFishingLine(m_CurrentSelectedFish.GetGameObject);
@@ -77,14 +77,14 @@ public class Fishing : ICharacterStates
                     CatchFish();
                 }
             }
-            else if (Input.GetButtonDown(m_Inputs[1]) && (!m_Catching))
+            else if (InputManager.Instance.GetButton(m_Inputs[1]) && (!m_Catching))
             {
                 m_CharacterControl.ActivateFishingLine(m_CurrentSelectedFish.GetGameObject);
                 m_CurrentSelectedFish.BeingCatched();
                 m_Catching = true;
             }
 
-            if (Input.GetButtonDown(m_Inputs[2]) || Input.GetButtonDown(m_Inputs[3]))
+            if (InputManager.Instance.GetButton(m_Inputs[2]) || InputManager.Instance.GetButton(m_Inputs[3]))
             {
                 m_CharacterControl.DeactivateFishingLine();
 
@@ -98,7 +98,7 @@ public class Fishing : ICharacterStates
         }
 
 
-        if (Input.GetButtonDown(m_Inputs[0]))
+        if (InputManager.Instance.GetButton(m_Inputs[0]))
         {
             m_Catching = false;
             if (m_CaughtFish.Count >= 1)
@@ -119,7 +119,7 @@ public class Fishing : ICharacterStates
 
     private void SwitchSelectedFish()
     {
-        if (Input.GetButtonDown(m_Inputs[2]))
+        if (InputManager.Instance.GetButton(m_Inputs[2]))
         {
             if (m_SelectedFishIndex == 0)
             {
@@ -133,7 +133,7 @@ public class Fishing : ICharacterStates
             m_CatchMeter = 0;
         }
 
-        if (Input.GetButtonDown(m_Inputs[3]))
+        if (InputManager.Instance.GetButton(m_Inputs[3]))
         {
             if (m_SelectedFishIndex == m_FishInArea.Count)
             {
