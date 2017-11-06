@@ -223,7 +223,7 @@ public class Fishing : ICharacterStates
             m_FishInArea.Add(m_CurrentSelectedFish);
         }
 
-        Collider[] hitColliders = Physics.OverlapSphere(m_CharacterControl.gameObject.transform.position, 3.5f);
+        Collider[] hitColliders = Physics.OverlapSphere(m_CharacterControl.gameObject.transform.position, 2.5f);
 
         if (hitColliders.Length <= 0)
         {

@@ -29,6 +29,10 @@ public class CharacterControl : PoolObject
     [SerializeField]
     private float m_VerMoveSpeed;
 
+    [SerializeField]
+    private AudioClip m_AttackSound;
+    private AudioSource m_AudioSource;
+
     private string[] m_Inputs;
 
     public Action<IFish> M_Catched { get; set; }
@@ -128,7 +132,12 @@ public class CharacterControl : PoolObject
 
         m_SelectedSprite.SetActive(false);
         m_FishingLine.gameObject.SetActive(false);
-        
+
+
+        m_AudioSource = gameObject.AddComponent<AudioSource>();
+        m_AudioSource.clip = m_AttackSound;
+        m_AudioSource.loop = false;
+
         GameManager.Singelton.RegisterPlayer(this);
         base.Initialize(Info);
     }
@@ -252,9 +261,15 @@ public class CharacterControl : PoolObject
         }
     }
 
+    public void PlayAttackSound()
+    {
+        m_AudioSource.Play();
+    }
+
     private void PickUp(ScriptablePowerUp power)
     {
         PowerUp powerup = new PowerUp(power.m_Stats, new RemovePowerupEffectDelegate(AddRemovePowerup), power.m_Image);
+
 
         M_AddPowerup.Invoke(powerup);
     }
