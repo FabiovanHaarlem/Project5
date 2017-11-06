@@ -32,6 +32,8 @@ public class CharacterControl : PoolObject
     [SerializeField]
     private AudioClip m_AttackSound;
     private AudioSource m_AudioSource;
+    [SerializeField]
+    private AudioClip m_HitSound;
 
     private string[] m_Inputs;
 
@@ -117,6 +119,9 @@ public class CharacterControl : PoolObject
         SetMoveSpeed();
         m_Inputs = new string[6];
 
+        m_HorMoveSpeed = 2;
+        m_VerMoveSpeed = 1.8f;
+
         m_Animator = GetComponent<Animator>();
         Transform transform = GetComponent<Transform>();
         m_WalkingState = new Walking(this, ref m_HorMoveSpeed, ref m_VerMoveSpeed, m_AnimatorLayer, transform, m_Animator);
@@ -199,6 +204,9 @@ public class CharacterControl : PoolObject
 
     public void HitByAttack()
     {
+        m_AudioSource.clip = m_HitSound;
+        m_AudioSource.Play();
+
         if (m_CurrentState == m_WalkingState)
         {
 
@@ -263,6 +271,7 @@ public class CharacterControl : PoolObject
 
     public void PlayAttackSound()
     {
+        m_AudioSource.clip = m_AttackSound;
         m_AudioSource.Play();
     }
 

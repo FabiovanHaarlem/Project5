@@ -18,6 +18,8 @@ public class CarryingFish : ICharacterStates
     private float m_VerMoveSpeed;
     private float m_PlayerScale;
     private int m_AnimatorLayer;
+    private int m_AnimatorState;
+
 
 
     public CarryingFish(CharacterControl characterController, ref float horMoveSpeed, ref float verMoveSpeed, int layer, Transform transform, Animator animator)
@@ -31,6 +33,7 @@ public class CarryingFish : ICharacterStates
         m_Transform = transform;
         m_PlayerScale = m_Transform.localScale.x;
         m_Animator = animator;
+        m_AnimatorState = 6;
     }
 
     public void UpdateControls(string[] inputs)
@@ -68,31 +71,48 @@ public class CarryingFish : ICharacterStates
             ToWalking();
         }
 
-        m_CharacterControl.gameObject.transform.position += new Vector3(-InputManager.Instance.GetAxis(m_Inputs[4]), 0, -InputManager.Instance.GetAxis(m_Inputs[5])) * Time.deltaTime;
+        m_CharacterControl.gameObject.transform.position += new Vector3(-InputManager.Instance.GetAxis(m_Inputs[4]) * m_HorMoveSpeed * Time.deltaTime, 0, -InputManager.Instance.GetAxis(m_Inputs[5]) * m_VerMoveSpeed * Time.deltaTime) ;
 
         if (-InputManager.Instance.GetAxis(m_Inputs[4]) < -0.2f)
         {
-            m_Animator.SetInteger("State", 3);
+
+            if (m_AnimatorState != 3)
+            {
+                m_Animator.SetInteger("State", 3);
+                m_AnimatorState = 3;
+            }
             //m_Animator.Play("WalkLeft", m_AnimatorLayer);
             m_Transform.localScale = new Vector3(-m_PlayerScale, m_Transform.localScale.y, m_Transform.localScale.z);
         }
         else if (-InputManager.Instance.GetAxis(m_Inputs[4]) > 0.2f)
         {
             //m_Animator.Play("WalkRigh", m_AnimatorLayer);
-            m_Animator.SetInteger("State", 4);
+            if (m_AnimatorState != 4)
+            {
+                m_Animator.SetInteger("State", 4);
+                m_AnimatorState = 4;
+            }
             m_Transform.localScale = new Vector3(m_PlayerScale, m_Transform.localScale.y, m_Transform.localScale.z);
         }
 
         if (InputManager.Instance.GetAxis(m_Inputs[5]) < -0.2f)
         {
             //m_Animator.Play("WalkUp", m_AnimatorLayer);
-            m_Animator.SetInteger("State", 2);
+            if (m_AnimatorState != 2)
+            {
+                m_Animator.SetInteger("State", 2);
+                m_AnimatorState = 2;
+            }
             m_Transform.localScale = new Vector3(m_PlayerScale, m_Transform.localScale.y, m_Transform.localScale.z);
         }
         else if (InputManager.Instance.GetAxis(m_Inputs[5]) > 0.2f)
         {
             //m_Animator.Play("WalkDown", m_AnimatorLayer);
-            m_Animator.SetInteger("State", 1);
+            if (m_AnimatorState != 1)
+            {
+                m_Animator.SetInteger("State", 1);
+                m_AnimatorState = 1;
+            }
             m_Transform.localScale = new Vector3(m_PlayerScale, m_Transform.localScale.y, m_Transform.localScale.z);
         }
         else
