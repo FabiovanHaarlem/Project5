@@ -130,8 +130,9 @@ namespace Game
                 m_Prefab = m_Pickup
             });
 
-            m_SpinningWheel = Pool.Singleton.Spawn(m_SpinningWheel).gameObject;
             m_SpinningWheelScript = m_SpinningWheel.GetComponent<SpinningWheel>();
+
+            m_SpinningWheel.SetActive(false);
         }
 
         //function to call when creating a new player
