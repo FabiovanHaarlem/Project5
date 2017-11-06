@@ -11,6 +11,10 @@ namespace Game.Character.Pickup
         [SerializeField][Tooltip("Powerups that can be rolled on this wheel")]
         private ScriptableWorldEvent[] m_Events;
 
+        [SerializeField]
+        private AudioClip m_EffectClip;
+        private AudioSource m_AudioSource;
+
         //speed of which the wheel is spinning
         private float m_Speed;
         //speed of which the wheel will be slowed by
@@ -18,6 +22,12 @@ namespace Game.Character.Pickup
 
         //variable that records how much times the wheel has spinned
         private float m_amountspinned;
+
+        private void Start()
+        {
+            m_AudioSource = gameObject.AddComponent<AudioSource>();
+            m_AudioSource.clip = m_EffectClip;
+        }
 
         private void Update()
         {
@@ -35,6 +45,7 @@ namespace Game.Character.Pickup
             //check if the speed is low enough to stop spinning
             if (m_Speed >= -5 && m_Speed <= 5 && m_amountspinned != 0)
             {
+                m_AudioSource.Play();
                 m_Speed = 0;
                 m_SlowingSpeed = 0;
                 
