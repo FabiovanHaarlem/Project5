@@ -6,8 +6,15 @@ namespace Game.Event
     [System.Serializable]
     public class Tornado : WorldEvent
     {
-        [SerializeField]
+
         private Vector3 m_Center;
+        public Vector3 Center
+        {
+            set
+            {
+                m_Center = value;
+            }
+        }
 
         [SerializeField]
         private float m_TornadoRadius;
@@ -34,6 +41,8 @@ namespace Game.Event
             Ray ray = new Ray(m_Center, m_Center + Vector3.forward);
 
             RaycastHit[] raycastHits = Physics.SphereCastAll(ray, m_TornadoRadius);
+
+            Debug.Log(raycastHits.Length);
 
             foreach(RaycastHit i in raycastHits)
             {

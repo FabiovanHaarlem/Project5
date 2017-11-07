@@ -55,7 +55,7 @@ namespace Game
 
         //used to refrence how many fish can spawn
         [SerializeField]
-        internal int SpawnLimit = 25;
+        internal int SpawnLimit = 50;
 
         [SerializeField] [Tooltip("score that will be required to win")]
         private int m_WinRequiredScore;
@@ -83,6 +83,8 @@ namespace Game
 
         [SerializeField]
         private GameObject m_LevelCenter;
+
+        private bool m_GameEnded;
     
         //a refrence of the game manager to call from other classes
         public static GameManager Singelton { get; private set; }
@@ -117,12 +119,8 @@ namespace Game
             m_AudioSource.loop = true;
             m_AudioSource.Play();
 
-            Pool.Singleton.LoadExtraItems(
-                new Poolobj()
-                {
-                    m_Amount = 1,
-                    m_Prefab = m_WinScreen
-                });
+            m_WinScreen.SetActive(false);
+            m_GameEnded = false;
 
             Pool.Singleton.LoadExtraItems(new Poolobj()
             {
@@ -205,7 +203,13 @@ namespace Game
         public void RegisterWorldEvent(ScriptableWorldEvent NewEvent)
         {
             WorldEvent actual = NewEvent.CreateInstance(NewEvent.m_TimeActive, new RemoveWorldEventPoolDelegate(DestroyWorldEvent));
+
+            Tornado actualtornado = (Tornado)actual;
+
+            actualtornado.Center = new Vector3(m_LevelCenter.transform.position.x, -5, m_LevelCenter.transform.position.z);
+
             m_ActiveWorldEvents.Add(actual);
+
             EditorUtility.SetDirty(NewEvent);
 
         }
@@ -219,8 +223,9 @@ namespace Game
         //function will spawn the winscreen with winner and button to go back to menu
         private void EndGame(PlayerScore player)
         {
-            PoolObject screen = Pool.Singleton.Spawn(m_WinScreen, m_UI);
-            screen.GetComponent<WinScherm>().Text = "Player " + player.M_PlayerController.PlayerID;
+            m_WinScreen.SetActive(true);
+            m_WinScreen.GetComponent<WinScherm>().Text = "Player " + player.M_PlayerController.PlayerID;
+            m_GameEnded = true;
         }
 
         private void Update()
@@ -233,12 +238,14 @@ namespace Game
 
             for (int i = 0; i < m_Scores.Count; i++)
             {
-                if (m_Scores[i].Score >= m_WinRequiredScore)
+                if (m_Scores[i].Score >= m_WinRequiredScore && !m_GameEnded)
                     EndGame(m_Scores[i]);
+                if (!m_GameEnded)
+                    m_WinScreen.SetActive(false);
             }
 
             //spawn powerups at a random interval
-            if(Random.Range(0, 1000) > 999)
+            if(Random.Range(0, 1000) > 998)
             {
                 Vector3 postion = m_LevelCenter.transform.position + (Random.insideUnitSphere * Random.Range(-9, 9));
                 postion.y = -5;

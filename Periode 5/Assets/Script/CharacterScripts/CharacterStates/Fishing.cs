@@ -101,6 +101,7 @@ public class Fishing : ICharacterStates
         if (InputManager.Instance.GetButton(m_Inputs[0]))
         {
             m_Catching = false;
+            m_CharacterControl.DeactivateFishingLine();
             if (m_CaughtFish.Count >= 1)
             {
                 ToCarrying();

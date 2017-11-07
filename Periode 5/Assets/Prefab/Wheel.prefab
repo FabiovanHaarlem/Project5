@@ -116,7 +116,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_duration: 8
   m_Events:
-  - {fileID: 11400000, guid: eb020c2f29578354294908bcd6cde110, type: 2}
+  - {fileID: 11400000, guid: f9d2ec8d1eff8604a9706e54e0db24ce, type: 2}
   m_EffectClip: {fileID: 8300000, guid: 5389d91135546af40af89ca61258d4db, type: 3}
 --- !u!114 &114194340256190664
 MonoBehaviour:

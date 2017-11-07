@@ -11,12 +11,10 @@ MonoBehaviour:
   m_Script: {fileID: 0}
   m_Name: Tornado
   m_EditorClassIdentifier: Assembly-CSharp:Game.Scriptable:ScriptableTornado
-  m_TimeActive: 10
+  m_TimeActive: 4
   m_Event:
-    m_Center: {x: 0, y: 0, z: 0}
-    m_TornadoRadius: 5
-    m_TornadoForce: 0
+    m_TornadoRadius: 4
+    m_TornadoForce: 50
     m_Particles: {fileID: 0}
     m_TagsToSinkIn:
     - Player
-    - AI
